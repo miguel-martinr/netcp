@@ -1,0 +1,77 @@
+\hypertarget{classSocket__af}{}\section{Referencia de la Clase Socket\+\_\+af}
+\label{classSocket__af}\index{Socket\+\_\+af@{Socket\+\_\+af}}
+
+
+Clase abstracta de un socket perteneciente a la familia A\+F\+\_\+\+I\+N\+ET Es decir, que permite \char`\"{}conexiones\char`\"{} tanto desde el mismo equipo como desde equipos externos.  
+
+
+
+
+{\ttfamily \#include $<$Socket\+\_\+af.\+hpp$>$}
+
+
+
+Diagrama de herencias de Socket\+\_\+af
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classSocket__af__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboración para Socket\+\_\+af\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{classSocket__af__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+sockaddr\+\_\+in \hyperlink{classSocket__af_aa2f8fb1398c1e6f66832151e8c5bcf2e}{get\+\_\+sockaddr\+\_\+in\+\_\+from} (const std\+::string ip\+\_\+address, int \hyperlink{classSocket__base_afcdd7ae81a9fb867d012b7db8c259576}{port})
+\begin{DoxyCompactList}\small\item\em Devuelve sockaddr\+\_\+in inicializada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Clase abstracta de un socket perteneciente a la familia A\+F\+\_\+\+I\+N\+ET Es decir, que permite \char`\"{}conexiones\char`\"{} tanto desde el mismo equipo como desde equipos externos. 
+
+\begin{DoxyAuthor}{Autor}
+Miguel Martín 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+20200919 
+\end{DoxyDate}
+
+
+\subsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classSocket__af_aa2f8fb1398c1e6f66832151e8c5bcf2e}\label{classSocket__af_aa2f8fb1398c1e6f66832151e8c5bcf2e}} 
+\index{Socket\+\_\+af@{Socket\+\_\+af}!get\+\_\+sockaddr\+\_\+in\+\_\+from@{get\+\_\+sockaddr\+\_\+in\+\_\+from}}
+\index{get\+\_\+sockaddr\+\_\+in\+\_\+from@{get\+\_\+sockaddr\+\_\+in\+\_\+from}!Socket\+\_\+af@{Socket\+\_\+af}}
+\subsubsection{\texorpdfstring{get\+\_\+sockaddr\+\_\+in\+\_\+from()}{get\_sockaddr\_in\_from()}}
+{\footnotesize\ttfamily sockaddr\+\_\+in Socket\+\_\+af\+::get\+\_\+sockaddr\+\_\+in\+\_\+from (\begin{DoxyParamCaption}\item[{const std\+::string}]{ip\+\_\+address,  }\item[{int}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Devuelve sockaddr\+\_\+in inicializada. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em ip\+\_\+address} & Dirección ip a bindear al socket \\
+\hline
+{\em port} & Puerto a bindear al socket \\
+\hline
+\end{DoxyParams}
+
+
+Implementa \hyperlink{classSocket__base_a887249ae6a25693230c0febf403a2545}{Socket\+\_\+base}.
+
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
+\item 
+include/hierarchy/Socket\+\_\+af.\+hpp\item 
+src/hierarchy/Socket\+\_\+af.\+cpp\end{DoxyCompactItemize}

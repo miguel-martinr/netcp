@@ -81,6 +81,8 @@ void Socket::receive_from(Message* message, sockaddr_in* address) {
 
 sockaddr_in Socket::make_ip_address(const std::string& ip_address, int port) {
   sockaddr_in my_address {};
+
+  
   in_addr* ptr_to_inad = &(my_address.sin_addr);
   my_address.sin_family = AF_INET;
 
