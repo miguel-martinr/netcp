@@ -1,9 +1,27 @@
 #include "../../include/hierarchy/Socket_af_dgram.hpp"
 
 #include <iostream>
+#include <unistd.h>
 #include <vector>
+#include <thread>
+#include <arpa/inet.h>
+
  
 using namespace std;
+
+bool quit = false;
+
+void cmd_handler(void) {
+  std::string cmd;
+  while (!quit) {
+    std::cin >> cmd;
+    if (cmd == "quit") {
+      quit = true;
+    } else {
+      std::cout << "Comando '" << cmd << "' no reconocido :(\n";
+    }
+  }
+}
 
 
 int main(int argc, char* argv[]) {
@@ -35,7 +53,7 @@ int main(int argc, char* argv[]) {
   }
 
 
-  if (server_mode) {
+  if (server_mode) { //Server mode
     if (port < 0)
       port = 0; //Any free port
 
@@ -46,7 +64,33 @@ int main(int argc, char* argv[]) {
               << std::endl << std::endl;
     
 
-  } else { //Cliente mode
+    std::cout << "\nEscuchando...\n";
+    std::thread cmd_handler_thread(cmd_handler);
+    Message msg;
+    sockaddr_in sender_address;
+
+    /*
+      Idea: meter while en un thread para porder matarlo cuando quit = true
+    */
+
+    while (!quit) {
+      sender_address = serv_.receive(&msg);
+      msg.text[sizeof(msg)-1] = '\0';
+      std::cout << "\n" << inet_ntoa(sender_address.sin_addr) << ':' << ntohs(sender_address.sin_port) 
+                << " dice: " << msg.text.data() << std::endl;
+    
+
+      /*
+      Idea: Hacer una struct o clase que contenga a sockaddr_in y permita
+            acceder más fácilmente a su ip y puerto. Así me ahorro el uso 
+            explícito de ntohs() e inet_ntoa()
+            ¿Cómo sé si se ha recibido y no ha saltado el timeout?
+      */
+    }
+
+    cmd_handler_thread.join();
+    
+  } else { //Client mode
     if (port < 0) {
       std::cout << "\nIntroduzca un puerto válido \n";
       return port;
@@ -62,6 +106,17 @@ int main(int argc, char* argv[]) {
               << " \nIp:   " << client_.ip()
               << " \nPort: " << client_.port()
               << std::endl << std::endl;
+
+
+    int bytes_read;
+    Message msg;
+    std::cout << "\nEnviando a " << ip_addr << ':' << port << std::endl;
+  
+    while((bytes_read = read(STDIN_FILENO, &msg, sizeof(msg)-1)) != 0) {
+      msg.text[bytes_read] = '\0';
+      client_.send_to(msg,ip_addr,port);
+    }
+    std::cout << "\nEnvío finalizado\n";
     
   }
 
