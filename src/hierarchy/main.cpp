@@ -66,25 +66,34 @@ int main(int argc, char* argv[]) {
 
     std::cout << "\nEscuchando...\n";
     std::thread cmd_handler_thread(cmd_handler);
-    Message msg;
-    sockaddr_in sender_address;
+    Message msg, empty_msg;
+    empty_msg.text[0] = '\0';
+    received_info rec_info;
 
     /*
       Idea: meter while en un thread para porder matarlo cuando quit = true
     */
 
     while (!quit) {
-      sender_address = serv_.receive(&msg);
-      msg.text[sizeof(msg)-1] = '\0';
-      std::cout << "\n" << inet_ntoa(sender_address.sin_addr) << ':' << ntohs(sender_address.sin_port) 
-                << " dice: " << msg.text.data() << std::endl;
-    
+      rec_info = serv_.receive(&msg);
+      if (rec_info.something_received) {
+        msg.text[sizeof(msg)-1] = '\0';
+        std::cout << "\n" << inet_ntoa(rec_info.sender_info.sin_addr) << ':' << ntohs(rec_info.sender_info.sin_port) 
+                  << " dice: " << msg.text.data() << std::endl;
+        msg = empty_msg;
+      }
+      /*
+        Bugs:
+        *La primera vez que se recibe un mensaje se imprime un puerto que no corresponde al puerto real del cliente
+      */
 
       /*
       Idea: Hacer una struct o clase que contenga a sockaddr_in y permita
             acceder más fácilmente a su ip y puerto. Así me ahorro el uso 
-            explícito de ntohs() e inet_ntoa()
-            ¿Cómo sé si se ha recibido y no ha saltado el timeout?
+            explícito de ntohs() e inet_ntoa() (Socket_af_dgram::receive() 
+            devolverá una instancia de esta struct)
+            
+            ¿Cómo sé si se ha recibido y no ha saltado el timeout? -> Lo hice con select()
       */
     }
 

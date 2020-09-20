@@ -14,17 +14,6 @@ Socket_af_dgram::Socket_af_dgram(std::string ip, int port) {
   int fd = socket(AF_INET, SOCK_DGRAM, 0); 
   set_fd(fd); //Hay que hacer un try catch aquí?
   bindsock(fd,ip,port);
-
-//   //Set timeout to 5 secs //No está funcionando. Revisar
-//   struct timeval tv;
-//   tv.tv_sec = 5;
-// //  tv.tv_usec = 100000;
-//   if (setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO,&tv,sizeof(tv)) < 0) {
-//     perror("Error");
-// }
-
-
-
   initialize();
 }
 
@@ -55,17 +44,48 @@ void Socket_af_dgram::send_to(Message msg, std::string remote_ip, int remote_por
     }
 }
 
-sockaddr_in Socket_af_dgram::receive(Message* msg) {
+received_info Socket_af_dgram::receive(Message* msg) {
+  received_info info;
   sockaddr_in remote_address;
+  info.something_received = false;
   socklen_t remote_address_size = sizeof(remote_address);
   
-  int result = recvfrom(fd(),msg,sizeof(*msg),0,
-                        reinterpret_cast<sockaddr*>(&remote_address),
-                        &remote_address_size);
-  if (result < 0) {
-    std::cout << "\nError en recvfrom()\n"; //provisional
-    perror("Error recfrom():"); //provisional
-    //Lanzar excepción (?) error recvfrom
+  fd_set fd_;
+  FD_ZERO(&fd_);
+  FD_SET(fd(),&fd_);
+
+  //Set timeout to 5 secs 
+  struct timeval tv;
+  tv.tv_sec = 5;
+  tv.tv_usec = 0;
+
+  int result = select(fd()+1, &fd_, NULL, NULL, &tv);
+  if (result > 0) {
+    result = recvfrom(fd(),msg,sizeof(*msg),0,
+                          reinterpret_cast<sockaddr*>(&remote_address),
+                          &remote_address_size);
+    if (result < 0) {
+      std::cout << "\nError en recvfrom()\n"; //provisional
+      perror("Error recfrom():"); //provisional
+      //Lanzar excepción (?) error recvfrom
+    }
+    info.something_received = true; //Se ha recibido un mensaje
+  } else if (result < 0) {
+    std::cout << "\nListo\n";
+    std::cout << "\nError slect()\n"; //Provisional
+    perror("Error select():"); //Provisional
   }
-  return remote_address;
+  
+
+  /*
+    Ideas: 
+    *En la struct que contendrá sockaddr_in y que este método devolverá
+    puedo poner un bool para indicar que se recibió un mensaje (HECHO)
+      -Falta facilitar acceso a ip y puerto
+
+    *Pasar argumento int timeout 
+  */
+
+  info.sender_info = remote_address;
+  return info;
 }

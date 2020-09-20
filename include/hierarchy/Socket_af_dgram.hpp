@@ -8,6 +8,19 @@
 #pragma once
 #include "Socket_af.hpp"
 
+/**
+ * @struct Devuelta por el método Socket_af_dgram::receive(), envuelve
+ * una sockaddr_in @a sender_info con la información del Socket que ha enviado el mensaje
+ * y un booleano @a something_received para saber si se ha recibido un mensaje.
+ */
+struct received_info {
+  sockaddr_in sender_info;
+  bool something_received;
+};
+
+/**
+ * @class Socket de la familia AF_INET y no orientado a conexión
+ */
 class Socket_af_dgram : public Socket_af {
  public:
   Socket_af_dgram(std::string ip, int port);
@@ -33,7 +46,7 @@ class Socket_af_dgram : public Socket_af {
    * @param msg Puntero a una estructura @a Message
    * @return Retorna una struct sockaddr_in con la dirección de donde ha recibido el mensaje
    */
-  sockaddr_in receive(Message* msg);
+  received_info receive(Message* msg);
 
-  
+
 };
