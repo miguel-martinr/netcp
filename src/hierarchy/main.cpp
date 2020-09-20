@@ -9,6 +9,9 @@
  
 using namespace std;
 
+/**
+ * @brief el programa termina si @a quit == true
+ */
 bool quit = false;
 
 void cmd_handler(void) {
@@ -16,6 +19,7 @@ void cmd_handler(void) {
   while (!quit) {
     std::cin >> cmd;
     if (cmd == "quit") {
+      std::cout << "\nFinalizando el programa...\n";
       quit = true;
     } else {
       std::cout << "Comando '" << cmd << "' no reconocido :(\n";
@@ -26,20 +30,31 @@ void cmd_handler(void) {
 
 int main(int argc, char* argv[]) {
 
-  std::vector<string> args;
-  for (int i = 1; i < argc; i++)
-    args.push_back(std::string(argv[i]));
   
   bool server_mode = false;
   int port = -1;
   std::string ip_addr;
 
+  //Parseando argumentos del programa
+  std::vector<string> args;
+  for (int i = 1; i < argc; i++)
+    args.push_back(std::string(argv[i]));
+
+
   for (int i = 0; i < args.size(); i++) {
     if (args[i] == "-s" || args[i] == "--server") {
       server_mode = true;
     } else if (args[i] == "-p" || args[i] == "--port") {
+      if (i == args.size() - 1) {
+        std::cout << "\nIntroduzca un puerto válido\n";
+        return -1;
+      }
       port = std::stoi(args[++i]);
     } else if (args[i] == "-i" || args[i] == "--ip-address") {
+      if (i == args.size()-1) {
+        std::cout << "\nIntroduzca una ip válida\n";
+        return -1;
+      }
       ip_addr = std::string(args[++i]); 
     } else {
       std::cout << "\n\nModo de uso:"
@@ -58,7 +73,7 @@ int main(int argc, char* argv[]) {
       port = 0; //Any free port
 
     Socket_af_dgram serv_(ip_addr, port);
-    std::cout << "\nServidor"
+    std::cout << "\nModo servidor"
               << " \nIp:   " << serv_.ip()
               << " \nPort: " << serv_.port()
               << std::endl << std::endl;
@@ -66,16 +81,26 @@ int main(int argc, char* argv[]) {
 
     std::cout << "\nEscuchando...\n";
     std::thread cmd_handler_thread(cmd_handler);
+    
     Message msg, empty_msg;
     empty_msg.text[0] = '\0';
     received_info rec_info;
 
     /*
       Idea: meter while en un thread para porder matarlo cuando quit = true
+      sería una función receive_messages()
+
+      Debería crear una clase server y encapsular todo lo que hace main en server_mode
+      dentro de ella?
+
+      Cuestión: como diferencio entre recibir un mensaje y recibir un fichero? Recibir
+      un fichero puede ser recibir fragmentos de dicho fichero como mensajes pero necesito
+      saber cuando es el primer fragmento, un fragmento intermedio y el final. (O principio
+      y final al mismo tiempo)
     */
 
     while (!quit) {
-      rec_info = serv_.receive(&msg);
+      rec_info = serv_.receive(&msg, 1);
       if (rec_info.something_received) {
         msg.text[sizeof(msg)-1] = '\0';
         std::cout << "\n" << inet_ntoa(rec_info.sender_info.sin_addr) << ':' << ntohs(rec_info.sender_info.sin_port) 

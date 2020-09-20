@@ -44,7 +44,7 @@ void Socket_af_dgram::send_to(Message msg, std::string remote_ip, int remote_por
     }
 }
 
-received_info Socket_af_dgram::receive(Message* msg) {
+received_info Socket_af_dgram::receive(Message* msg, int stimeout) {
   received_info info;
   sockaddr_in remote_address;
   info.something_received = false;
@@ -54,9 +54,9 @@ received_info Socket_af_dgram::receive(Message* msg) {
   FD_ZERO(&fd_);
   FD_SET(fd(),&fd_);
 
-  //Set timeout to 5 secs 
+  //Set timeout to stimeout secs 
   struct timeval tv;
-  tv.tv_sec = 5;
+  tv.tv_sec = stimeout;
   tv.tv_usec = 0;
 
   int result = select(fd()+1, &fd_, NULL, NULL, &tv);

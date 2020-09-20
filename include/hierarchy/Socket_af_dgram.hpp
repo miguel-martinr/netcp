@@ -44,9 +44,10 @@ class Socket_af_dgram : public Socket_af {
   /**
    * @brief Recive un mensaje y lo guarda en el Message apuntado por @a msg
    * @param msg Puntero a una estructura @a Message
+   * @param stimeout Número máximo de segundos que esperará el socket hasta estar listo para leer (read readiness)
    * @return Retorna una struct sockaddr_in con la dirección de donde ha recibido el mensaje
    */
-  received_info receive(Message* msg);
+  received_info receive(Message* msg, int stimeout = 5);
 
 
 };
