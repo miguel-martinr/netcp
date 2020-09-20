@@ -2,10 +2,6 @@
 \label{classSocket__af__dgram}\index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
 
 
-{\ttfamily \#include $<$Socket\+\_\+af\+\_\+dgram.\+hpp$>$}
-
-
-
 Diagrama de herencias de Socket\+\_\+af\+\_\+dgram\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,17 +27,8 @@ void \hyperlink{classSocket__af__dgram_a6a2084d50ab117b0bf6b699aa0573db5}{bindso
 \begin{DoxyCompactList}\small\item\em Bindea el socket a la ip y puerto especificados. \end{DoxyCompactList}\item 
 void \hyperlink{classSocket__af__dgram_a744bb661eeebe5b5cdfca0028da6bd88}{send\+\_\+to} (\hyperlink{structMessage}{Message} msg, std\+::string remote\+\_\+ip, int remote\+\_\+port)
 \begin{DoxyCompactList}\small\item\em Envía el mensaje {\itshape msg} al socket bindeado a la dirección {\itshape remote\+\_\+ip} y puerto {\itshape remote\+\_\+port}. \end{DoxyCompactList}\item 
-sockaddr\+\_\+in \hyperlink{classSocket__af__dgram_a572c1e9c58c11512fa75d0ad7a775857}{receive} (\hyperlink{structMessage}{Message} $\ast$msg)
+\hyperlink{structreceived__info}{received\+\_\+info} \hyperlink{classSocket__af__dgram_a35d37ff27ecbb87d2e0ca12dae78b67c}{receive} (\hyperlink{structMessage}{Message} $\ast$msg)
 \begin{DoxyCompactList}\small\item\em Recive un mensaje y lo guarda en el \hyperlink{structMessage}{Message} apuntado por {\itshape msg}. \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsection{Descripción detallada}
-\begin{DoxyAuthor}{Autor}
-Miguel Martín 
-\end{DoxyAuthor}
-\begin{DoxyDate}{Fecha}
-20200919 
-\end{DoxyDate}
 
 
 \subsection{Documentación del constructor y destructor}
@@ -77,11 +64,11 @@ Bindea el socket a la ip y puerto especificados.
 {\em port} & Puerto al que bindear el socket \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSocket__af__dgram_a572c1e9c58c11512fa75d0ad7a775857}\label{classSocket__af__dgram_a572c1e9c58c11512fa75d0ad7a775857}} 
+\mbox{\Hypertarget{classSocket__af__dgram_a35d37ff27ecbb87d2e0ca12dae78b67c}\label{classSocket__af__dgram_a35d37ff27ecbb87d2e0ca12dae78b67c}} 
 \index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!receive@{receive}}
 \index{receive@{receive}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
 \subsubsection{\texorpdfstring{receive()}{receive()}}
-{\footnotesize\ttfamily sockaddr\+\_\+in Socket\+\_\+af\+\_\+dgram\+::receive (\begin{DoxyParamCaption}\item[{\hyperlink{structMessage}{Message} $\ast$}]{msg }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{structreceived__info}{received\+\_\+info} Socket\+\_\+af\+\_\+dgram\+::receive (\begin{DoxyParamCaption}\item[{\hyperlink{structMessage}{Message} $\ast$}]{msg }\end{DoxyParamCaption})}
 
 
 

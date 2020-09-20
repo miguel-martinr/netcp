@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Netcp: Página principal</title>
+<title>Netcp: netcp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -59,10 +59,37 @@ $(function() {
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Netcp Documentación</div>  </div>
+<div class="title">netcp </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><p><code>netcp</code> es la implementación de un programa cliente-servidor utilizado para la transferencia de ficheros múltiple y simultánea.</p>
+<p>Hace uso de:</p><ul>
+<li>Sockets en linux</li>
+<li>Hilos en C++ (&lt;thread&gt;)</li>
+</ul>
+<h2>Jerarquía de clases <a class="el" href="classSocket.html">Socket</a></h2>
+<blockquote class="doxtable">
+<p>Esto puede considerarse un <b>subproyecto</b> de <code>netcp</code> y planeo extraerlo, junto a su documentación, a un repositorio propio :)<br />
+<br />
+ </p>
+</blockquote>
+<p>Mi idea actualmente (a fecha 20 de Septiembre de 2020) es crear una jerarquía de clases <a class="el" href="classSocket.html">Socket</a> que se corresponda (en principio) con la siguiente estructura :</p>
+<ul>
+<li><a class="el" href="classSocket__base.html" title="Clase abstracta base para un socket. ">Socket_base</a> : Clase abstracta base<ul>
+<li><a class="el" href="classSocket__af.html" title="Clase abstracta de un socket perteneciente a la familia AF_INET Es decir, que permite &quot;conexiones&quot; ta...">Socket_af</a> : Clase abstracta(?) base para aquellos sockets de la familia AF_INET (protocolo IPv4), tengo que corregir el nombre, el ideal sería <code>Socket_inet</code> y afectaría a todos sus hijos.<ul>
+<li><a class="el" href="classSocket__af__dgram.html">Socket_af_dgram</a> : Implementación de un socket de la familia AF_INET no orientado a conexión (UDP).</li>
+<li>Socket_af_stream : Implementación de un socket de la familia AF_INET orientado a conexión (TCP)</li>
+</ul>
+</li>
+<li>Socket_unix : Clase abstracta(?) base para aquellos sockets de la familia AF_UNIX (conexión local)<ul>
+<li>Socket_unix_dgram : Implementación de un socket de la familia AF_UNIX no orientado a conexión (UDP)</li>
+<li>Socket_unix_stream : Implementación de un socket de la familia AF_UNIX orientado a conexión (TCP) </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generado por &#160;<a href="http://www.doxygen.org/index.html">
