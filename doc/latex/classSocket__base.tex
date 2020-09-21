@@ -1,0 +1,106 @@
+\hypertarget{classSocket__base}{}\section{Referencia de la Clase Socket\+\_\+base}
+\label{classSocket__base}\index{Socket\+\_\+base@{Socket\+\_\+base}}
+
+
+Clase abstracta base para un socket.  
+
+
+
+
+{\ttfamily \#include $<$Socket\+\_\+base.\+hpp$>$}
+
+
+
+Diagrama de herencias de Socket\+\_\+base\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classSocket__base__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{classSocket__base_aed490170422026c6dfe5def12031cd04}{ip} (void)
+\begin{DoxyCompactList}\small\item\em Devuelve la ip del socket. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSocket__base_ad70da7f9fc273f0f2fa847447c292038}\label{classSocket__base_ad70da7f9fc273f0f2fa847447c292038}} 
+void \hyperlink{classSocket__base_ad70da7f9fc273f0f2fa847447c292038}{set\+\_\+fd} (int \hyperlink{classSocket__base_a740aedbac3269e4981732dd6842cd9c2}{fd})
+\begin{DoxyCompactList}\small\item\em Settea el fd y verifica errores. \end{DoxyCompactList}\item 
+int \hyperlink{classSocket__base_afcdd7ae81a9fb867d012b7db8c259576}{port} (void)
+\begin{DoxyCompactList}\small\item\em Devuelve el puerto del socket. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSocket__base_a740aedbac3269e4981732dd6842cd9c2}\label{classSocket__base_a740aedbac3269e4981732dd6842cd9c2}} 
+int \hyperlink{classSocket__base_a740aedbac3269e4981732dd6842cd9c2}{fd} (void)
+\begin{DoxyCompactList}\small\item\em Devuelve el descriptor de fichero del socket. \end{DoxyCompactList}\item 
+void \hyperlink{classSocket__base_af0b9f713f4d6231c287198034fad662e}{initialize} (void)
+\begin{DoxyCompactList}\small\item\em Inicializa ip\+\_\+ y port\+\_\+ una vez bindeado el socket. \end{DoxyCompactList}\item 
+virtual sockaddr\+\_\+in \hyperlink{classSocket__base_a887249ae6a25693230c0febf403a2545}{get\+\_\+sockaddr\+\_\+in\+\_\+from} (const std\+::string ip\+\_\+address, int \hyperlink{classSocket__base_afcdd7ae81a9fb867d012b7db8c259576}{port})=0
+\begin{DoxyCompactList}\small\item\em Devuelve sockaddr\+\_\+in inicializada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Clase abstracta base para un socket. 
+
+\subsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classSocket__base_a887249ae6a25693230c0febf403a2545}\label{classSocket__base_a887249ae6a25693230c0febf403a2545}} 
+\index{Socket\+\_\+base@{Socket\+\_\+base}!get\+\_\+sockaddr\+\_\+in\+\_\+from@{get\+\_\+sockaddr\+\_\+in\+\_\+from}}
+\index{get\+\_\+sockaddr\+\_\+in\+\_\+from@{get\+\_\+sockaddr\+\_\+in\+\_\+from}!Socket\+\_\+base@{Socket\+\_\+base}}
+\subsubsection{\texorpdfstring{get\+\_\+sockaddr\+\_\+in\+\_\+from()}{get\_sockaddr\_in\_from()}}
+{\footnotesize\ttfamily virtual sockaddr\+\_\+in Socket\+\_\+base\+::get\+\_\+sockaddr\+\_\+in\+\_\+from (\begin{DoxyParamCaption}\item[{const std\+::string}]{ip\+\_\+address,  }\item[{int}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Devuelve sockaddr\+\_\+in inicializada. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em ip\+\_\+address} & Dirección ip a bindear al socket \\
+\hline
+{\em port} & Puerto a bindear al socket \\
+\hline
+\end{DoxyParams}
+
+
+Implementado en \hyperlink{classSocket__af_aa2f8fb1398c1e6f66832151e8c5bcf2e}{Socket\+\_\+af}.
+
+\mbox{\Hypertarget{classSocket__base_af0b9f713f4d6231c287198034fad662e}\label{classSocket__base_af0b9f713f4d6231c287198034fad662e}} 
+\index{Socket\+\_\+base@{Socket\+\_\+base}!initialize@{initialize}}
+\index{initialize@{initialize}!Socket\+\_\+base@{Socket\+\_\+base}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void Socket\+\_\+base\+::initialize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Inicializa ip\+\_\+ y port\+\_\+ una vez bindeado el socket. 
+
+Es necesario que el socket ya esté bindeado, dado que esta función hace uso de getsockname() para conocer la ip y el puerto. \mbox{\Hypertarget{classSocket__base_aed490170422026c6dfe5def12031cd04}\label{classSocket__base_aed490170422026c6dfe5def12031cd04}} 
+\index{Socket\+\_\+base@{Socket\+\_\+base}!ip@{ip}}
+\index{ip@{ip}!Socket\+\_\+base@{Socket\+\_\+base}}
+\subsubsection{\texorpdfstring{ip()}{ip()}}
+{\footnotesize\ttfamily std\+::string Socket\+\_\+base\+::ip (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Devuelve la ip del socket. 
+
+\begin{DoxyReturn}{Devuelve}
+Objeto std\+::string que es la dirección ip a la que el socket está bindeado. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSocket__base_afcdd7ae81a9fb867d012b7db8c259576}\label{classSocket__base_afcdd7ae81a9fb867d012b7db8c259576}} 
+\index{Socket\+\_\+base@{Socket\+\_\+base}!port@{port}}
+\index{port@{port}!Socket\+\_\+base@{Socket\+\_\+base}}
+\subsubsection{\texorpdfstring{port()}{port()}}
+{\footnotesize\ttfamily int Socket\+\_\+base\+::port (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Devuelve el puerto del socket. 
+
+\begin{DoxyReturn}{Devuelve}
+int que es el puerto al que el socket está bindeado. 
+\end{DoxyReturn}
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
+\item 
+/home/alejandro/\+Documentos/github\+\_\+me/netcp/include/\hyperlink{Socket__base_8hpp}{Socket\+\_\+base.\+hpp}\item 
+/home/alejandro/\+Documentos/github\+\_\+me/netcp/src/Socket\+\_\+base.\+cpp\end{DoxyCompactItemize}

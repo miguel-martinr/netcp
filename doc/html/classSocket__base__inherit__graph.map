@@ -1,0 +1,4 @@
+<map id="Socket_base" name="Socket_base">
+<area shape="rect" id="node2" href="$classSocket__af.html" title="Clase abstracta de un socket perteneciente a la familia AF_INET Es decir, que permite &quot;conexiones&quot; ta..." alt="" coords="27,80,108,107"/>
+<area shape="rect" id="node3" href="$classSocket__af__dgram.html" title="Socket de la familia AF_INET y no orientado a conexión. " alt="" coords="5,155,129,181"/>
+</map>

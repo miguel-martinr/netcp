@@ -1,0 +1,53 @@
+{\ttfamily netcp} es la implementación de un programa cliente-\/servidor utilizado para la transferencia de ficheros múltiple y simultánea.
+
+Hace uso de\+:
+\begin{DoxyItemize}
+\item Sockets en linux
+\item Hilos en C++ ({\ttfamily std\+::thread})
+\end{DoxyItemize}
+
+\subsubsection*{Por hacer}
+
+
+\begin{DoxyItemize}
+\item 20/09/2020 21\+:00 Quiero crear una clase server e introducir en ella las funciones que realiza el programa en el modo server (server\+\_\+mode = true) (en proceso)
+\item Sistema para el envío de ficheros. ¿\+Como diferencio entre enviar mensajes individuales y ficheros? -\/$>$ Enviar ficheros fragmentándolos en mensajes -\/$>$ Requiere establecer una estructura de mensaje que tenga campos con un código que indique si es el primero, intermedio, etc...
+\item Excepciones (mirar lo hecho en el repositorio \href{https://github.com/miguel-martinr/Data-Structure-Classes}{\tt D\+SC}
+\end{DoxyItemize}
+
+\subsubsection*{Hecho}
+
+
+\begin{DoxyItemize}
+\item 20/09/2020 21\+:11 Voy a reorganizar todo el proyecto
+\begin{DoxyItemize}
+\item Eliminar Socket.\+h hecho (20/09/2020 22\+:55)
+\item Sacar ficheros de include/hierarchy y src/hierarchy y eliminar esos directorios (hecho 20/09/2020 22\+:55)
+\item Corregir makefile para que funcione con la nueva organización (hecho 20/09/2020 22\+:55)
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Jerarquía de clases Socket}
+
+\begin{quote}
+Esto puede considerarse un {\bfseries subproyecto} de {\ttfamily netcp} y planeo extraerlo, junto a su documentación, a un repositorio propio \+:)~\newline
+~\newline
+ \end{quote}
+Mi idea actualmente (a fecha 20 de Septiembre de 2020) es crear una jerarquía de clases Socket que corresponda (en principio) a la siguiente estructura \+:
+
+
+\begin{DoxyItemize}
+\item \hyperlink{classSocket__base}{Socket\+\_\+base} \+: Clase abstracta base
+\begin{DoxyItemize}
+\item \hyperlink{classSocket__af}{Socket\+\_\+af} \+: Clase abstracta(?) base para aquellos sockets de la familia A\+F\+\_\+\+I\+N\+ET (protocolo I\+Pv4), tengo que corregir el nombre, el ideal sería {\ttfamily Socket\+\_\+inet} y afectaría a todos sus hijos.
+\begin{DoxyItemize}
+\item \hyperlink{classSocket__af__dgram}{Socket\+\_\+af\+\_\+dgram} \+: Implementación de un socket de la familia A\+F\+\_\+\+I\+N\+ET no orientado a conexión (U\+DP).
+\item Socket\+\_\+af\+\_\+stream \+: Implementación de un socket de la familia A\+F\+\_\+\+I\+N\+ET orientado a conexión (T\+CP)
+\end{DoxyItemize}
+\item Socket\+\_\+unix \+: Clase abstracta(?) base para aquellos sockets de la familia A\+F\+\_\+\+U\+N\+IX (conexión local)
+\begin{DoxyItemize}
+\item Socket\+\_\+unix\+\_\+dgram \+: Implementación de un socket de la familia A\+F\+\_\+\+U\+N\+IX no orientado a conexión (U\+DP)
+\item Socket\+\_\+unix\+\_\+stream \+: Implementación de un socket de la familia A\+F\+\_\+\+U\+N\+IX orientado a conexión (T\+CP) 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
