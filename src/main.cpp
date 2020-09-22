@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
   
   bool server_mode = false;
   int port = -1;
-  std::string ip_addr;
+  std::string ip_addr, local_ip;
 
   //Parseando argumentos del programa
   std::vector<string> args;
@@ -56,12 +56,20 @@ int main(int argc, char* argv[]) {
         return -1;
       }
       ip_addr = std::string(args[++i]); 
+    } else if (args[i] == "-li" || args[i] == "--local-ip") {
+      if (i == args.size()-1) {
+        std::cout << "\nIntroduzca una ip local válida\n";
+        return -1;
+      }
+      local_ip = args[++i];
     } else {
       std::cout << "\n\nModo de uso:"
                 << "\n  ./bin/hierarchy/netcp OPCIONES"
                 << "\n\nOpciones:"
-                << "\n  -s --server  Modo servidor (client mode is set by default)"
-                << "\n  -p --port    Especifica el puerto a usar, en modo servidor es opcional"
+                << "\n  -s  --server     Modo servidor (client mode is set by default)"
+                << "\n  -p  --port       Especifica el puerto a usar, en modo servidor es opcional"
+                << "\n  -li --local-ip   ip local (solo para modo cliente)"
+                << "\n  -i  --ip-address "
                 << "\n";   
       return 0; 
     }
@@ -135,7 +143,10 @@ int main(int argc, char* argv[]) {
       return -2;
     }
 
-    Socket_af_dgram client_("127.0.1.1", 0);
+    if (local_ip.empty())
+      local_ip = "127.0.1.1";
+
+    Socket_af_dgram client_(local_ip, 0);
     std::cout << "\nCliente"
               << " \nIp:   " << client_.ip()
               << " \nPort: " << client_.port()

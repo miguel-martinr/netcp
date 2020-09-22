@@ -1,9 +1,7 @@
 #include "../include/server.hpp"
 
 server::server(void) {
-  sv_sock_ = new Socket_af_dgram();
-
-
+  sv_sock_ = new Socket_af_dgram();  
 }
 
 server::~server(void) {

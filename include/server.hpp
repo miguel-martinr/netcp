@@ -15,7 +15,14 @@ class server {
     server(void);
     ~server(void);
 
+    /**
+     * @return std::string ip a la que está bindeado el socket principal del server
+     */
     std::string get_ip(void);
+
+    /**
+     * @return int al que está bindeado el socket principal del server
+     */
     int get_port(void);
 
 
