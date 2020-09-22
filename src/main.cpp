@@ -143,8 +143,7 @@ int main(int argc, char* argv[]) {
       return -2;
     }
 
-    if (local_ip.empty())
-      local_ip = "127.0.1.1";
+
 
     Socket_af_dgram client_(local_ip, 0);
     std::cout << "\nCliente"
