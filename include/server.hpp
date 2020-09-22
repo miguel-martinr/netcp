@@ -12,7 +12,8 @@ class server {
     server(void);
     ~server(void);
 
-
+    std::string get_ip(void);
+    int get_port(void);
 
 
   private:
@@ -20,7 +21,7 @@ class server {
      * @note Puede causar problemas el usar un puntero a socket? Cuál es la mejor opción
      * y porqué
      */
-    Socket_af_dgram* sv_sock_;
+    Socket_base* sv_sock_;
 
-    
+
 };

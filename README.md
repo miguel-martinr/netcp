@@ -9,6 +9,7 @@ Hace uso de:
 * 20/09/2020 21:00 Quiero crear una clase server e introducir en ella las funciones que realiza el programa en el modo server (server_mode = true) (en proceso)
 * Sistema para el envío de ficheros. ¿Como diferencio entre enviar mensajes individuales y ficheros? -> Enviar ficheros fragmentándolos en mensajes -> Requiere establecer una estructura de mensaje que tenga campos con un código que indique si es el primero, intermedio, etc...
 * Excepciones (mirar lo hecho en el repositorio <a href="https://github.com/miguel-martinr/Data-Structure-Classes" target="_blank">DSC</a>
+* ¿Podría transferir el método bind a un nivel superior en la jerarquía de Socket? -> ¿Cuál es la diferencia al bindear cada tipo de socket?
 
 ### Hecho
 * 20/09/2020 21:11 Voy a reorganizar todo el proyecto

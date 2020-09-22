@@ -25,7 +25,12 @@ struct received_info {
  */
 class Socket_af_dgram : public Socket_af {
  public:
-  Socket_af_dgram(std::string ip, int port);
+
+  /**
+   * @param ip dirección ip a la que bindear el socket, INADDR_ANY por defecto
+   * @param port puerto al que bindear el socket, si se deja vacío se asignará cualquier puerto libre
+   */
+  Socket_af_dgram(std::string ip = "", int port = 0);
   ~Socket_af_dgram(void);
 
   /**
