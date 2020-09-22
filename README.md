@@ -1,15 +1,42 @@
-# netcp
+# Netcp
+## Introducción
 `netcp` es la implementación de un programa cliente-servidor utilizado para la transferencia de ficheros múltiple y simultánea.
 
 Hace uso de:
   * Sockets en linux
   * Hilos en C++ (`std::thread`)
 
+
+## El servidor
+El servidor (implementado por  `class server`) funciona mediante mensajes (representados por `struct Message`) cuyos campos indican el estado de la transferencia.
+### Message
+
+```
+struct Message {
+  int code_;
+  std::array<char,1024> text;
+  
+}
+```
+#### codes
+0 = Mensaje inicial
+1 = Fragmento intermedio
+2 = Mensaje final
+
+
+
+
+
+
+
+
+
 ### Por hacer 
 * 20/09/2020 21:00 Quiero crear una clase server e introducir en ella las funciones que realiza el programa en el modo server (server_mode = true) (en proceso)
 * Sistema para el envío de ficheros. ¿Como diferencio entre enviar mensajes individuales y ficheros? -> Enviar ficheros fragmentándolos en mensajes -> Requiere establecer una estructura de mensaje que tenga campos con un código que indique si es el primero, intermedio, etc...
 * Excepciones (mirar lo hecho en el repositorio <a href="https://github.com/miguel-martinr/Data-Structure-Classes" target="_blank">DSC</a>
 * ¿Podría transferir el método bind a un nivel superior en la jerarquía de Socket? -> ¿Cuál es la diferencia al bindear cada tipo de socket?
+* Tengo que idear un mecanismo de comunicación entre cliente y servidor -> El cliente solicita subir un fichero, el servidor verifica que se pueda subir (o lo pone en una cola hasta que se pueda?) y si es así abre un hilo para recibir el fichero y un socket en ese puerto para recibirlo, le comunica el puerto al cliente para que este empieze a transmitir 
 
 ### Hecho
 * 20/09/2020 21:11 Voy a reorganizar todo el proyecto

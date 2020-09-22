@@ -2,6 +2,9 @@
 
 #include "../include/Socket_af_dgram.hpp"
 
+#include <thread>
+#include <vector>
+
 /**
  * @class server
  * @brief Implementa el servidor netcp
@@ -22,6 +25,8 @@ class server {
      * y porqué
      */
     Socket_base* sv_sock_;
+    std::vector<std::thread> threads_;
 
+    
 
 };

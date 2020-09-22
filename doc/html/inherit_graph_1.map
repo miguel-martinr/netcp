@@ -1,3 +1,3 @@
 <map id="Representación gráfica de la clase" name="Representación gráfica de la clase">
-<area shape="rect" id="node1" href="$structreceived__info.html" title="Envuelve una sockaddr_in con la información del Socket que ha enviado el mensaje y un booleano para s..." alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node1" href="$structMessage.html" title="Representa un mensaje POD (Plain old data) con un texto de 1024 bytes (caracteres) ..." alt="" coords="5,5,80,32"/>
 </map>

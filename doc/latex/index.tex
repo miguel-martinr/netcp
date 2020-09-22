@@ -1,3 +1,5 @@
+\subsection*{Introducción}
+
 {\ttfamily netcp} es la implementación de un programa cliente-\/servidor utilizado para la transferencia de ficheros múltiple y simultánea.
 
 Hace uso de\+:
@@ -6,6 +8,18 @@ Hace uso de\+:
 \item Hilos en C++ ({\ttfamily std\+::thread})
 \end{DoxyItemize}
 
+\subsection*{El servidor}
+
+El servidor (implementado por {\ttfamily class server}) funciona mediante mensajes (representados por {\ttfamily struct \hyperlink{structMessage}{Message}}) cuyos campos indican el estado de la transferencia. \#\#\# \hyperlink{structMessage}{Message} 
+\begin{DoxyCode}
+struct Message \{
+  int code\_;
+  std::array<char,1024> text;
+
+\}
+\end{DoxyCode}
+
+
 \subsubsection*{Por hacer}
 
 
@@ -13,6 +27,7 @@ Hace uso de\+:
 \item 20/09/2020 21\+:00 Quiero crear una clase server e introducir en ella las funciones que realiza el programa en el modo server (server\+\_\+mode = true) (en proceso)
 \item Sistema para el envío de ficheros. ¿\+Como diferencio entre enviar mensajes individuales y ficheros? -\/$>$ Enviar ficheros fragmentándolos en mensajes -\/$>$ Requiere establecer una estructura de mensaje que tenga campos con un código que indique si es el primero, intermedio, etc...
 \item Excepciones (mirar lo hecho en el repositorio \href{https://github.com/miguel-martinr/Data-Structure-Classes}{\tt D\+SC}
+\item ¿\+Podría transferir el método bind a un nivel superior en la jerarquía de \hyperlink{classSocket}{Socket}? -\/$>$ ¿\+Cuál es la diferencia al bindear cada tipo de socket?
 \end{DoxyItemize}
 
 \subsubsection*{Hecho}
@@ -27,13 +42,13 @@ Hace uso de\+:
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Jerarquía de clases Socket}
+\subsection*{Jerarquía de clases \hyperlink{classSocket}{Socket}}
 
 \begin{quote}
 Esto puede considerarse un {\bfseries subproyecto} de {\ttfamily netcp} y planeo extraerlo, junto a su documentación, a un repositorio propio \+:)~\newline
 ~\newline
  \end{quote}
-Mi idea actualmente (a fecha 20 de Septiembre de 2020) es crear una jerarquía de clases Socket que corresponda (en principio) a la siguiente estructura \+:
+Mi idea actualmente (a fecha 20 de Septiembre de 2020) es crear una jerarquía de clases \hyperlink{classSocket}{Socket} que corresponda (en principio) a la siguiente estructura \+:
 
 
 \begin{DoxyItemize}

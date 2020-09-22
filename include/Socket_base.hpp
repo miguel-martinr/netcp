@@ -18,6 +18,7 @@
  * con un texto de 1024 bytes (caracteres)
  */
 struct Message {
+  int code_;
 	std::array<char, 1024> text;
 };
 

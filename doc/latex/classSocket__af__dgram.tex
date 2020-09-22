@@ -2,7 +2,7 @@
 \label{classSocket__af__dgram}\index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
 
 
-Socket de la familia A\+F\+\_\+\+I\+N\+ET y no orientado a conexión.  
+\hyperlink{classSocket}{Socket} de la familia A\+F\+\_\+\+I\+N\+ET y no orientado a conexión.  
 
 
 
@@ -37,17 +37,25 @@ void \hyperlink{classSocket__af__dgram_a6a2084d50ab117b0bf6b699aa0573db5}{bindso
 void \hyperlink{classSocket__af__dgram_a744bb661eeebe5b5cdfca0028da6bd88}{send\+\_\+to} (\hyperlink{structMessage}{Message} msg, std\+::string remote\+\_\+ip, int remote\+\_\+port)
 \begin{DoxyCompactList}\small\item\em Envía el mensaje {\itshape msg} al socket bindeado a la dirección {\itshape remote\+\_\+ip} y puerto {\itshape remote\+\_\+port}. \end{DoxyCompactList}\item 
 \hyperlink{structreceived__info}{received\+\_\+info} \hyperlink{classSocket__af__dgram_ac7d122d2317d980c48964076c3c7e2bb}{receive} (\hyperlink{structMessage}{Message} $\ast$msg, int stimeout=5)
+\begin{DoxyCompactList}\small\item\em Recive un mensaje y lo guarda en el \hyperlink{structMessage}{Message} apuntado por {\itshape msg}. \end{DoxyCompactList}\item 
+\hyperlink{classSocket__af__dgram_a41bd41eb63d780e446275dc5eb320334}{Socket\+\_\+af\+\_\+dgram} (std\+::string \hyperlink{classSocket__base_aed490170422026c6dfe5def12031cd04}{ip}=\char`\"{}\char`\"{}, int \hyperlink{classSocket__base_afcdd7ae81a9fb867d012b7db8c259576}{port}=0)
+\item 
+void \hyperlink{classSocket__af__dgram_a6a2084d50ab117b0bf6b699aa0573db5}{bindsock} (int \hyperlink{classSocket__base_a740aedbac3269e4981732dd6842cd9c2}{fd}, std\+::string \hyperlink{classSocket__base_aed490170422026c6dfe5def12031cd04}{ip}, int \hyperlink{classSocket__base_afcdd7ae81a9fb867d012b7db8c259576}{port})
+\begin{DoxyCompactList}\small\item\em Bindea el socket a la ip y puerto especificados. \end{DoxyCompactList}\item 
+void \hyperlink{classSocket__af__dgram_a744bb661eeebe5b5cdfca0028da6bd88}{send\+\_\+to} (\hyperlink{structMessage}{Message} msg, std\+::string remote\+\_\+ip, int remote\+\_\+port)
+\begin{DoxyCompactList}\small\item\em Envía el mensaje {\itshape msg} al socket bindeado a la dirección {\itshape remote\+\_\+ip} y puerto {\itshape remote\+\_\+port}. \end{DoxyCompactList}\item 
+\hyperlink{structreceived__info}{received\+\_\+info} \hyperlink{classSocket__af__dgram_ac7d122d2317d980c48964076c3c7e2bb}{receive} (\hyperlink{structMessage}{Message} $\ast$msg, int stimeout=5)
 \begin{DoxyCompactList}\small\item\em Recive un mensaje y lo guarda en el \hyperlink{structMessage}{Message} apuntado por {\itshape msg}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Descripción detallada}
-Socket de la familia A\+F\+\_\+\+I\+N\+ET y no orientado a conexión. 
+\hyperlink{classSocket}{Socket} de la familia A\+F\+\_\+\+I\+N\+ET y no orientado a conexión. 
 
 \subsection{Documentación del constructor y destructor}
 \mbox{\Hypertarget{classSocket__af__dgram_a11391f68bb56dafa6be879f388e4b0cd}\label{classSocket__af__dgram_a11391f68bb56dafa6be879f388e4b0cd}} 
 \index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
 \index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
-\subsubsection{\texorpdfstring{Socket\+\_\+af\+\_\+dgram()}{Socket\_af\_dgram()}}
+\subsubsection{\texorpdfstring{Socket\+\_\+af\+\_\+dgram()}{Socket\_af\_dgram()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily Socket\+\_\+af\+\_\+dgram\+::\+Socket\+\_\+af\+\_\+dgram (\begin{DoxyParamCaption}\item[{std\+::string}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
 
 \begin{DoxyAuthor}{Autor}
@@ -56,13 +64,43 @@ Miguel Martín
 \begin{DoxyDate}{Fecha}
 20200919 
 \end{DoxyDate}
+\mbox{\Hypertarget{classSocket__af__dgram_a41bd41eb63d780e446275dc5eb320334}\label{classSocket__af__dgram_a41bd41eb63d780e446275dc5eb320334}} 
+\index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
+\index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
+\subsubsection{\texorpdfstring{Socket\+\_\+af\+\_\+dgram()}{Socket\_af\_dgram()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Socket\+\_\+af\+\_\+dgram\+::\+Socket\+\_\+af\+\_\+dgram (\begin{DoxyParamCaption}\item[{std\+::string}]{ip = {\ttfamily \char`\"{}\char`\"{}},  }\item[{int}]{port = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em ip} & dirección ip a la que bindear el socket, I\+N\+A\+D\+D\+R\+\_\+\+A\+NY por defecto \\
+\hline
+{\em port} & puerto al que bindear el socket, si se deja vacío se asignará cualquier puerto libre \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Documentación de las funciones miembro}
 \mbox{\Hypertarget{classSocket__af__dgram_a6a2084d50ab117b0bf6b699aa0573db5}\label{classSocket__af__dgram_a6a2084d50ab117b0bf6b699aa0573db5}} 
 \index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!bindsock@{bindsock}}
 \index{bindsock@{bindsock}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
-\subsubsection{\texorpdfstring{bindsock()}{bindsock()}}
+\subsubsection{\texorpdfstring{bindsock()}{bindsock()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Socket\+\_\+af\+\_\+dgram\+::bindsock (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{std\+::string}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Bindea el socket a la ip y puerto especificados. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em ip} & Dirección ip a la que bindear el socket \\
+\hline
+{\em port} & Puerto al que bindear el socket \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSocket__af__dgram_a6a2084d50ab117b0bf6b699aa0573db5}\label{classSocket__af__dgram_a6a2084d50ab117b0bf6b699aa0573db5}} 
+\index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!bindsock@{bindsock}}
+\index{bindsock@{bindsock}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
+\subsubsection{\texorpdfstring{bindsock()}{bindsock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily void Socket\+\_\+af\+\_\+dgram\+::bindsock (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{std\+::string}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
 
 
@@ -79,7 +117,27 @@ Bindea el socket a la ip y puerto especificados.
 \mbox{\Hypertarget{classSocket__af__dgram_ac7d122d2317d980c48964076c3c7e2bb}\label{classSocket__af__dgram_ac7d122d2317d980c48964076c3c7e2bb}} 
 \index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!receive@{receive}}
 \index{receive@{receive}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
-\subsubsection{\texorpdfstring{receive()}{receive()}}
+\subsubsection{\texorpdfstring{receive()}{receive()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{structreceived__info}{received\+\_\+info} Socket\+\_\+af\+\_\+dgram\+::receive (\begin{DoxyParamCaption}\item[{\hyperlink{structMessage}{Message} $\ast$}]{msg,  }\item[{int}]{stimeout = {\ttfamily 5} }\end{DoxyParamCaption})}
+
+
+
+Recive un mensaje y lo guarda en el \hyperlink{structMessage}{Message} apuntado por {\itshape msg}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em msg} & Puntero a una estructura {\itshape \hyperlink{structMessage}{Message}} \\
+\hline
+{\em stimeout} & Número máximo de segundos que esperará el socket hasta estar listo para leer (read readiness) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Retorna una struct sockaddr\+\_\+in con la dirección de donde ha recibido el mensaje 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSocket__af__dgram_ac7d122d2317d980c48964076c3c7e2bb}\label{classSocket__af__dgram_ac7d122d2317d980c48964076c3c7e2bb}} 
+\index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!receive@{receive}}
+\index{receive@{receive}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
+\subsubsection{\texorpdfstring{receive()}{receive()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \hyperlink{structreceived__info}{received\+\_\+info} Socket\+\_\+af\+\_\+dgram\+::receive (\begin{DoxyParamCaption}\item[{\hyperlink{structMessage}{Message} $\ast$}]{msg,  }\item[{int}]{stimeout = {\ttfamily 5} }\end{DoxyParamCaption})}
 
 
@@ -99,7 +157,24 @@ Retorna una struct sockaddr\+\_\+in con la dirección de donde ha recibido el me
 \mbox{\Hypertarget{classSocket__af__dgram_a744bb661eeebe5b5cdfca0028da6bd88}\label{classSocket__af__dgram_a744bb661eeebe5b5cdfca0028da6bd88}} 
 \index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!send\+\_\+to@{send\+\_\+to}}
 \index{send\+\_\+to@{send\+\_\+to}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
-\subsubsection{\texorpdfstring{send\+\_\+to()}{send\_to()}}
+\subsubsection{\texorpdfstring{send\+\_\+to()}{send\_to()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Socket\+\_\+af\+\_\+dgram\+::send\+\_\+to (\begin{DoxyParamCaption}\item[{\hyperlink{structMessage}{Message}}]{msg,  }\item[{std\+::string}]{remote\+\_\+ip,  }\item[{int}]{remote\+\_\+port }\end{DoxyParamCaption})}
+
+
+
+Envía el mensaje {\itshape msg} al socket bindeado a la dirección {\itshape remote\+\_\+ip} y puerto {\itshape remote\+\_\+port}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em remote\+\_\+ip} & Dirección ip remota \\
+\hline
+{\em remote\+\_\+port} & Puerto remoto \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSocket__af__dgram_a744bb661eeebe5b5cdfca0028da6bd88}\label{classSocket__af__dgram_a744bb661eeebe5b5cdfca0028da6bd88}} 
+\index{Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}!send\+\_\+to@{send\+\_\+to}}
+\index{send\+\_\+to@{send\+\_\+to}!Socket\+\_\+af\+\_\+dgram@{Socket\+\_\+af\+\_\+dgram}}
+\subsubsection{\texorpdfstring{send\+\_\+to()}{send\_to()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily void Socket\+\_\+af\+\_\+dgram\+::send\+\_\+to (\begin{DoxyParamCaption}\item[{\hyperlink{structMessage}{Message}}]{msg,  }\item[{std\+::string}]{remote\+\_\+ip,  }\item[{int}]{remote\+\_\+port }\end{DoxyParamCaption})}
 
 
@@ -117,5 +192,5 @@ Envía el mensaje {\itshape msg} al socket bindeado a la dirección {\itshape re
 
 La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
 \item 
-/home/alejandro/\+Documentos/github\+\_\+me/netcp/include/Socket\+\_\+af\+\_\+dgram.\+hpp\item 
-/home/alejandro/\+Documentos/github\+\_\+me/netcp/src/Socket\+\_\+af\+\_\+dgram.\+cpp\end{DoxyCompactItemize}
+/home/alejandro/\+Documentos/github\+\_\+me/netcp/include/hierarchy/Socket\+\_\+af\+\_\+dgram.\+hpp\item 
+/home/alejandro/\+Documentos/github\+\_\+me/netcp/src/hierarchy/Socket\+\_\+af\+\_\+dgram.\+cpp\end{DoxyCompactItemize}
