@@ -8,19 +8,13 @@
 
 #pragma once
 
+#include "Message.hpp"
+
 #include <array>
 #include <netinet/in.h>
 #include <string>
 
-/**
- * @struct Message
- * @brief Representa un mensaje POD (Plain old data)
- * con un texto de 1024 bytes (caracteres)
- */
-struct Message {
-  int code_;
-	std::array<char, 1024> text;
-};
+
 
 /**
  * @class Socket_base

@@ -10,7 +10,9 @@ Hace uso de\+:
 
 \subsection*{El servidor}
 
-El servidor (implementado por {\ttfamily class server}) funciona mediante mensajes (representados por {\ttfamily struct \hyperlink{structMessage}{Message}}) cuyos campos indican el estado de la transferencia. \#\#\# \hyperlink{structMessage}{Message} 
+El servidor (implementado por {\ttfamily class server}) funciona mediante mensajes (representados por {\ttfamily struct \hyperlink{structMessage}{Message}}) cuyos campos indican el estado de la transferencia. \subsubsection*{\hyperlink{structMessage}{Message}}
+
+
 \begin{DoxyCode}
 struct Message \{
   int code\_;
@@ -18,7 +20,9 @@ struct Message \{
 
 \}
 \end{DoxyCode}
+ \paragraph*{codes}
 
+0 = Mensaje inicial 1 = Fragmento intermedio 2 = Mensaje final
 
 \subsubsection*{Por hacer}
 
@@ -27,7 +31,8 @@ struct Message \{
 \item 20/09/2020 21\+:00 Quiero crear una clase server e introducir en ella las funciones que realiza el programa en el modo server (server\+\_\+mode = true) (en proceso)
 \item Sistema para el envío de ficheros. ¿\+Como diferencio entre enviar mensajes individuales y ficheros? -\/$>$ Enviar ficheros fragmentándolos en mensajes -\/$>$ Requiere establecer una estructura de mensaje que tenga campos con un código que indique si es el primero, intermedio, etc...
 \item Excepciones (mirar lo hecho en el repositorio \href{https://github.com/miguel-martinr/Data-Structure-Classes}{\tt D\+SC}
-\item ¿\+Podría transferir el método bind a un nivel superior en la jerarquía de \hyperlink{classSocket}{Socket}? -\/$>$ ¿\+Cuál es la diferencia al bindear cada tipo de socket?
+\item ¿\+Podría transferir el método bind a un nivel superior en la jerarquía de Socket? -\/$>$ ¿\+Cuál es la diferencia al bindear cada tipo de socket?
+\item Tengo que idear un mecanismo de comunicación entre cliente y servidor -\/$>$ El cliente solicita subir un fichero, el servidor verifica que se pueda subir (o lo pone en una cola hasta que se pueda?) y si es así abre un hilo para recibir el fichero y un socket en ese puerto para recibirlo, le comunica el puerto al cliente para que este empieze a transmitir
 \end{DoxyItemize}
 
 \subsubsection*{Hecho}
@@ -42,13 +47,13 @@ struct Message \{
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Jerarquía de clases \hyperlink{classSocket}{Socket}}
+\subsection*{Jerarquía de clases Socket}
 
 \begin{quote}
 Esto puede considerarse un {\bfseries subproyecto} de {\ttfamily netcp} y planeo extraerlo, junto a su documentación, a un repositorio propio \+:)~\newline
 ~\newline
  \end{quote}
-Mi idea actualmente (a fecha 20 de Septiembre de 2020) es crear una jerarquía de clases \hyperlink{classSocket}{Socket} que corresponda (en principio) a la siguiente estructura \+:
+Mi idea actualmente (a fecha 20 de Septiembre de 2020) es crear una jerarquía de clases Socket que corresponda (en principio) a la siguiente estructura \+:
 
 
 \begin{DoxyItemize}

@@ -111,7 +111,7 @@ int main(int argc, char* argv[]) {
       rec_info = serv_.receive(&msg, 1);
       if (rec_info.something_received) {
         msg.text[sizeof(msg)-1] = '\0';
-        std::cout << "\n" << inet_ntoa(rec_info.sender_info.sin_addr) << ':' << ntohs(rec_info.sender_info.sin_port) 
+        std::cout << "\n" << rec_info.ip() << ':' << rec_info.port()
                   << " dice: " << msg.text.data() << std::endl;
         msg = empty_msg;
       }
@@ -120,14 +120,6 @@ int main(int argc, char* argv[]) {
         *La primera vez que se recibe un mensaje se imprime un puerto que no corresponde al puerto real del cliente
       */
 
-      /*
-      Idea: Hacer una struct o clase que contenga a sockaddr_in y permita
-            acceder más fácilmente a su ip y puerto. Así me ahorro el uso 
-            explícito de ntohs() e inet_ntoa() (Socket_af_dgram::receive() 
-            devolverá una instancia de esta struct)
-            
-            ¿Cómo sé si se ha recibido y no ha saltado el timeout? -> Lo hice con select()
-      */
     }
 
     cmd_handler_thread.join();
@@ -154,9 +146,10 @@ int main(int argc, char* argv[]) {
 
     int bytes_read;
     Message msg;
+    msg.code_ = 0;
     std::cout << "\nEnviando a " << ip_addr << ':' << port << std::endl;
   
-    while((bytes_read = read(STDIN_FILENO, &msg, sizeof(msg)-1)) != 0) {
+    while((bytes_read = read(STDIN_FILENO, &msg.text, sizeof(msg.text)-1)) != 0) {
       msg.text[bytes_read] = '\0';
       client_.send_to(msg,ip_addr,port);
     }

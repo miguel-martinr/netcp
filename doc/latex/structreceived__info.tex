@@ -2,13 +2,20 @@
 \label{structreceived__info}\index{received\+\_\+info@{received\+\_\+info}}
 
 
-Envuelve una sockaddr\+\_\+in con la información del \hyperlink{classSocket}{Socket} que ha enviado el mensaje y un booleano para saber si se ha recibido un mensaje.  
+Envuelve una sockaddr\+\_\+in con la información del Socket que ha enviado el mensaje y un booleano para saber si se ha recibido un mensaje.  
 
 
 
 
-{\ttfamily \#include $<$Socket\+\_\+af\+\_\+dgram.\+hpp$>$}
+{\ttfamily \#include $<$received\+\_\+info.\+hpp$>$}
 
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{structreceived__info_a0ec80b4a2270fb3df1485a339c9dbbc7}{ip} (void)
+\item 
+int \hyperlink{structreceived__info_a477d71d73917e058813ccf4ebb5f0269}{port} (void)
+\end{DoxyCompactItemize}
 \subsection*{Atributos públicos}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,16 +28,30 @@ bool {\bfseries something\+\_\+received}
 
 
 \subsection{Descripción detallada}
-Envuelve una sockaddr\+\_\+in con la información del \hyperlink{classSocket}{Socket} que ha enviado el mensaje y un booleano para saber si se ha recibido un mensaje. 
+Envuelve una sockaddr\+\_\+in con la información del Socket que ha enviado el mensaje y un booleano para saber si se ha recibido un mensaje. 
 
-\begin{DoxyAuthor}{Autor}
-Miguel Martín 
-\end{DoxyAuthor}
-\begin{DoxyDate}{Fecha}
-20200919 
-\end{DoxyDate}
+\subsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{structreceived__info_a0ec80b4a2270fb3df1485a339c9dbbc7}\label{structreceived__info_a0ec80b4a2270fb3df1485a339c9dbbc7}} 
+\index{received\+\_\+info@{received\+\_\+info}!ip@{ip}}
+\index{ip@{ip}!received\+\_\+info@{received\+\_\+info}}
+\subsubsection{\texorpdfstring{ip()}{ip()}}
+{\footnotesize\ttfamily std\+::string received\+\_\+info\+::ip (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Devuelve}
+ip a la que el socket sender está bindeado 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structreceived__info_a477d71d73917e058813ccf4ebb5f0269}\label{structreceived__info_a477d71d73917e058813ccf4ebb5f0269}} 
+\index{received\+\_\+info@{received\+\_\+info}!port@{port}}
+\index{port@{port}!received\+\_\+info@{received\+\_\+info}}
+\subsubsection{\texorpdfstring{port()}{port()}}
+{\footnotesize\ttfamily int received\+\_\+info\+::port (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Devuelve}
+puerto al que el socket sender está bindeado 
+\end{DoxyReturn}
 
 
-La documentación para esta estructura fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+La documentación para esta estructura fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
 \item 
-/home/alejandro/\+Documentos/github\+\_\+me/netcp/include/hierarchy/Socket\+\_\+af\+\_\+dgram.\+hpp\end{DoxyCompactItemize}
+/home/alejandro/\+Documentos/github\+\_\+me/netcp/include/received\+\_\+info.\+hpp\item 
+/home/alejandro/\+Documentos/github\+\_\+me/netcp/src/received\+\_\+info.\+cpp\end{DoxyCompactItemize}

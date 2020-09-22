@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../include/Socket_af_dgram.hpp"
+#include "../include/transf_info.hpp"
+
 
 #include <thread>
 #include <vector>
@@ -12,7 +14,8 @@
 class server {
 
   public:
-    server(void);
+
+    server(std::string ip = "", int port = 0);
     ~server(void);
 
     /**
@@ -26,6 +29,8 @@ class server {
     int get_port(void);
 
 
+    int upload_file(transf_info new_transf);
+
   private:
     /**
      * @note Puede causar problemas el usar un puntero a socket? Cuál es la mejor opción
@@ -33,6 +38,7 @@ class server {
      */
     Socket_base* sv_sock_;
     std::vector<std::thread> threads_;
+    bool quit_;
 
     
 

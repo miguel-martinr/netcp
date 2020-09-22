@@ -12,16 +12,41 @@ Implementa el servidor netcp.
 \subsection*{Métodos públicos}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classserver_aa3ffb6541d4295c59a04ca6d72a8bed4}\label{classserver_aa3ffb6541d4295c59a04ca6d72a8bed4}} 
-std\+::string {\bfseries get\+\_\+ip} (void)
+\mbox{\Hypertarget{classserver_a94f0de46df9f31016034c81e0014c06c}\label{classserver_a94f0de46df9f31016034c81e0014c06c}} 
+{\bfseries server} (std\+::string ip=\char`\"{}\char`\"{}, int port=0)
 \item 
-\mbox{\Hypertarget{classserver_a85c34ce8e949d74f068025b11bd04bcc}\label{classserver_a85c34ce8e949d74f068025b11bd04bcc}} 
-int {\bfseries get\+\_\+port} (void)
+std\+::string \hyperlink{classserver_aa3ffb6541d4295c59a04ca6d72a8bed4}{get\+\_\+ip} (void)
+\item 
+int \hyperlink{classserver_a85c34ce8e949d74f068025b11bd04bcc}{get\+\_\+port} (void)
+\item 
+\mbox{\Hypertarget{classserver_ad7ef99cd7b0f7c529e501f34bd5d7f03}\label{classserver_ad7ef99cd7b0f7c529e501f34bd5d7f03}} 
+int {\bfseries upload\+\_\+file} (\hyperlink{structtransf__info}{transf\+\_\+info} new\+\_\+transf)
 \end{DoxyCompactItemize}
 
 
 \subsection{Descripción detallada}
 Implementa el servidor netcp. 
+
+\subsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classserver_aa3ffb6541d4295c59a04ca6d72a8bed4}\label{classserver_aa3ffb6541d4295c59a04ca6d72a8bed4}} 
+\index{server@{server}!get\+\_\+ip@{get\+\_\+ip}}
+\index{get\+\_\+ip@{get\+\_\+ip}!server@{server}}
+\subsubsection{\texorpdfstring{get\+\_\+ip()}{get\_ip()}}
+{\footnotesize\ttfamily std\+::string server\+::get\+\_\+ip (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Devuelve}
+std\+::string ip a la que está bindeado el socket principal del server 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classserver_a85c34ce8e949d74f068025b11bd04bcc}\label{classserver_a85c34ce8e949d74f068025b11bd04bcc}} 
+\index{server@{server}!get\+\_\+port@{get\+\_\+port}}
+\index{get\+\_\+port@{get\+\_\+port}!server@{server}}
+\subsubsection{\texorpdfstring{get\+\_\+port()}{get\_port()}}
+{\footnotesize\ttfamily int server\+::get\+\_\+port (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Devuelve}
+int al que está bindeado el socket principal del server 
+\end{DoxyReturn}
+
 
 La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
 \item 

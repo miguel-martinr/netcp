@@ -1,3 +1,5 @@
 <map id="Representación gráfica de la clase" name="Representación gráfica de la clase">
-<area shape="rect" id="node1" href="$classserver.html" title="Implementa el servidor netcp. " alt="" coords="5,5,64,32"/>
+<area shape="rect" id="node1" href="$classSocket__base.html" title="Clase abstracta base para un socket. " alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node2" href="$classSocket__af.html" title="Clase abstracta de un socket perteneciente a la familia AF_INET Es decir, que permite &quot;conexiones&quot; ta..." alt="" coords="152,5,233,32"/>
+<area shape="rect" id="node3" href="$classSocket__af__dgram.html" title="Socket de la familia AF_INET y no orientado a conexión. " alt="" coords="281,5,405,32"/>
 </map>

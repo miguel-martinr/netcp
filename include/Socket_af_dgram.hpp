@@ -7,17 +7,7 @@
 
 #pragma once
 #include "Socket_af.hpp"
-
-/**
- * @struct received_info 
- * @brief Envuelve una sockaddr_in con la información del Socket 
- *        que ha enviado el mensaje y un booleano para saber 
- *        si se ha recibido un mensaje.
- */
-struct received_info {
-  sockaddr_in sender_info;
-  bool something_received;
-};
+#include "received_info.hpp"
 
 /**
  * @class Socket_af_dgram
@@ -52,7 +42,7 @@ class Socket_af_dgram : public Socket_af {
    * @brief Recive un mensaje y lo guarda en el Message apuntado por @a msg
    * @param msg Puntero a una estructura @a Message
    * @param stimeout Número máximo de segundos que esperará el socket hasta estar listo para leer (read readiness)
-   * @return Retorna una struct sockaddr_in con la dirección de donde ha recibido el mensaje
+   * @return Retorna una struct received_info con información de donde ha recibido el mensaje
    */
   received_info receive(Message* msg, int stimeout = 5);
 

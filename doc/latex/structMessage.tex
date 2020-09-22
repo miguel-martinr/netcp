@@ -7,19 +7,27 @@ Representa un mensaje P\+OD (Plain old data) con un texto de 1024 bytes (caracte
 
 
 
-{\ttfamily \#include $<$Socket\+\_\+base.\+hpp$>$}
+{\ttfamily \#include $<$Message.\+hpp$>$}
 
 \subsection*{Atributos públicos}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{structMessage_a8398aec0171dec03c496704e79fd0022}\label{structMessage_a8398aec0171dec03c496704e79fd0022}} 
 std\+::array$<$ char, 1024 $>$ {\bfseries text}
+\item 
+\mbox{\Hypertarget{structMessage_aaeff602e34763cb97a9fe25d435f7164}\label{structMessage_aaeff602e34763cb97a9fe25d435f7164}} 
+int {\bfseries code\+\_\+}
+\item 
+\mbox{\Hypertarget{structMessage_af6c004d9113d8d6590cc717ebe4a8c48}\label{structMessage_af6c004d9113d8d6590cc717ebe4a8c48}} 
+int {\bfseries port\+\_\+}
 \end{DoxyCompactItemize}
 
 
 \subsection{Descripción detallada}
 Representa un mensaje P\+OD (Plain old data) con un texto de 1024 bytes (caracteres) 
 
+Codes\+: 0 -\/ 1 -\/ 2 -\/ 3 -\/ Continuar envío al puerto indicado en port\+\_\+ 
+
 La documentación para esta estructura fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
 \item 
-/home/alejandro/\+Documentos/github\+\_\+me/netcp/include/\hyperlink{Socket__base_8hpp}{Socket\+\_\+base.\+hpp}\end{DoxyCompactItemize}
+/home/alejandro/\+Documentos/github\+\_\+me/netcp/include/Message.\+hpp\end{DoxyCompactItemize}

@@ -47,7 +47,6 @@ void Socket_af_dgram::send_to(Message msg, std::string remote_ip, int remote_por
 received_info Socket_af_dgram::receive(Message* msg, int stimeout) {
   received_info info;
   sockaddr_in remote_address;
-  info.something_received = false;
   socklen_t remote_address_size = sizeof(remote_address);
   
   fd_set fd_;
@@ -72,7 +71,7 @@ received_info Socket_af_dgram::receive(Message* msg, int stimeout) {
     info.something_received = true; //Se ha recibido un mensaje
   } else if (result < 0) {
     std::cout << "\nListo\n";
-    std::cout << "\nError slect()\n"; //Provisional
+    std::cout << "\nError select()\n"; //Provisional
     perror("Error select():"); //Provisional
   }
   

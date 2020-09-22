@@ -69,12 +69,16 @@ $(function() {
 <li>Hilos en C++ (<code>std::thread</code>)</li>
 </ul>
 <h2>El servidor</h2>
-<p>El servidor (implementado por <code>class server</code>) funciona mediante mensajes (representados por <code>struct <a class="el" href="structMessage.html" title="Representa un mensaje POD (Plain old data) con un texto de 1024 bytes (caracteres) ...">Message</a></code>) cuyos campos indican el estado de la transferencia. ### <a class="el" href="structMessage.html" title="Representa un mensaje POD (Plain old data) con un texto de 1024 bytes (caracteres) ...">Message</a> </p><div class="fragment"><div class="line">struct Message {</div><div class="line">  int code_;</div><div class="line">  std::array&lt;char,1024&gt; text;</div><div class="line"></div><div class="line">}</div></div><!-- fragment --><h3>Por hacer</h3>
+<p>El servidor (implementado por <code>class server</code>) funciona mediante mensajes (representados por <code>struct <a class="el" href="structMessage.html" title="Representa un mensaje POD (Plain old data) con un texto de 1024 bytes (caracteres) ...">Message</a></code>) cuyos campos indican el estado de la transferencia. </p><h3><a class="el" href="structMessage.html" title="Representa un mensaje POD (Plain old data) con un texto de 1024 bytes (caracteres) ...">Message</a></h3>
+<div class="fragment"><div class="line">struct Message {</div><div class="line">  int code_;</div><div class="line">  std::array&lt;char,1024&gt; text;</div><div class="line"></div><div class="line">}</div></div><!-- fragment --> <h4>codes</h4>
+<p>0 = Mensaje inicial 1 = Fragmento intermedio 2 = Mensaje final</p>
+<h3>Por hacer</h3>
 <ul>
 <li>20/09/2020 21:00 Quiero crear una clase server e introducir en ella las funciones que realiza el programa en el modo server (server_mode = true) (en proceso)</li>
 <li>Sistema para el envío de ficheros. ¿Como diferencio entre enviar mensajes individuales y ficheros? -&gt; Enviar ficheros fragmentándolos en mensajes -&gt; Requiere establecer una estructura de mensaje que tenga campos con un código que indique si es el primero, intermedio, etc...</li>
 <li>Excepciones (mirar lo hecho en el repositorio <a href="https://github.com/miguel-martinr/Data-Structure-Classes" target="_blank">DSC</a></li>
-<li>¿Podría transferir el método bind a un nivel superior en la jerarquía de <a class="el" href="classSocket.html">Socket</a>? -&gt; ¿Cuál es la diferencia al bindear cada tipo de socket?</li>
+<li>¿Podría transferir el método bind a un nivel superior en la jerarquía de Socket? -&gt; ¿Cuál es la diferencia al bindear cada tipo de socket?</li>
+<li>Tengo que idear un mecanismo de comunicación entre cliente y servidor -&gt; El cliente solicita subir un fichero, el servidor verifica que se pueda subir (o lo pone en una cola hasta que se pueda?) y si es así abre un hilo para recibir el fichero y un socket en ese puerto para recibirlo, le comunica el puerto al cliente para que este empieze a transmitir</li>
 </ul>
 <h3>Hecho</h3>
 <ul>
@@ -85,13 +89,13 @@ $(function() {
 </ul>
 </li>
 </ul>
-<h2>Jerarquía de clases <a class="el" href="classSocket.html">Socket</a></h2>
+<h2>Jerarquía de clases Socket</h2>
 <blockquote class="doxtable">
 <p>Esto puede considerarse un <b>subproyecto</b> de <code>netcp</code> y planeo extraerlo, junto a su documentación, a un repositorio propio :)<br />
 <br />
  </p>
 </blockquote>
-<p>Mi idea actualmente (a fecha 20 de Septiembre de 2020) es crear una jerarquía de clases <a class="el" href="classSocket.html">Socket</a> que corresponda (en principio) a la siguiente estructura :</p>
+<p>Mi idea actualmente (a fecha 20 de Septiembre de 2020) es crear una jerarquía de clases Socket que corresponda (en principio) a la siguiente estructura :</p>
 <ul>
 <li><a class="el" href="classSocket__base.html" title="Clase abstracta base para un socket. ">Socket_base</a> : Clase abstracta base<ul>
 <li><a class="el" href="classSocket__af.html" title="Clase abstracta de un socket perteneciente a la familia AF_INET Es decir, que permite &quot;conexiones&quot; ta...">Socket_af</a> : Clase abstracta(?) base para aquellos sockets de la familia AF_INET (protocolo IPv4), tengo que corregir el nombre, el ideal sería <code>Socket_inet</code> y afectaría a todos sus hijos.<ul>

@@ -1,7 +1,9 @@
 #############################################
 CC = g++
 CFLAGS = -g -std=c++11 -pthread
+
 #############################################
+
 #Socket Hierarchy
 #revisar 
 
@@ -26,8 +28,11 @@ SV_OBJS = bin/server.o
 SV_TEST = bin/server_test
 SV_TEST_INCLUDE = 
 SV_TEST_SRC = src/server_test.cpp
-SV_TEST_OBJS = $(SV_OBJS) $(HCHY_OBJS)
+SV_TEST_OBJS = $(SV_OBJS) $(HCHY_OBJS) bin/received_info.o
 
+#############################################
+#netcp
+MAIN_OBJS = bin/received_info.o $(HCHY_OBJS)
 
 
 #############################################
@@ -36,15 +41,22 @@ SV_TEST_OBJS = $(SV_OBJS) $(HCHY_OBJS)
 #netcp
 
 #main program
-$(HCHY_BIN_PATH)/netcp: $(HCHY_OBJS) $(HCHY_SRC_PATH)/main.cpp
-	$(CC) $(CFLAGS) $(HCHY_SRC_PATH)/main.cpp $(HCHY_OBJS) -o $(HCHY_BIN_PATH)/netcp	
+$(HCHY_BIN_PATH)/netcp: $(MAIN_OBJS) $(HCHY_SRC_PATH)/main.cpp
+	$(CC) $(CFLAGS) $(HCHY_SRC_PATH)/main.cpp $(MAIN_OBJS) -o $(HCHY_BIN_PATH)/netcp	
 
-#server
-$(SV_TEST): $(SV_TEST_INCLUDE) $(SV_TEST_SRC) $(SV_TEST_OBJS)
+#server test
+$(SV_TEST): $(SV_TEST_INCLUDE) $(SV_TEST_SRC) $(SV_TEST_OBJS) 
 	$(CC) $(CFLAGS) $(SV_TEST_SRC) $(SV_TEST_OBJS) -o $(SV_TEST)
 
+#server
 $(SV_OBJS): $(SV_INCLUDE) $(SV_SRC) $(HCHY_OBJS)
 	$(CC) $(CFLAGS) -c  $(SV_SRC) -o $(SV_OBJS)
+
+
+#received_info
+bin/received_info.o: include/received_info.hpp src/received_info.cpp
+	$(CC) $(CFLAGS) -c src/received_info.cpp -o bin/received_info.o
+
 
 #Socket Hierarchy 
 
