@@ -24,6 +24,22 @@ struct Message \{
 
 0 = Mensaje inicial 1 = Fragmento intermedio 2 = Mensaje final
 
+\subsection*{El cliente}
+
+{\ttfamily class client} \subsubsection*{Pasos para envío de un fichero}
+
+
+\begin{DoxyEnumerate}
+\item Abre el fichero y comprueba
+\item Envía un \hyperlink{structMessage}{Message} con código 3 y el nombre del fichero al socket principal del server
+\item Espera n segundos por la respuesta del servidor
+\item 
+\begin{DoxyItemize}
+\item Si recibe la respuesta antes de que se cumplan los n segundos entonces empieza a enviar al nuevo puerto indicado por el servidor
+\item Si no lo recibe (o recibe un código de error) lo comunica
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
 \subsubsection*{Por hacer}
 
 

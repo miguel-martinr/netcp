@@ -18,8 +18,16 @@ HCHY_OBJS = $(HCHY_BIN_PATH)/Socket_base.o $(HCHY_BIN_PATH)/Socket_af.o $(HCHY_B
 #esta organizacion es mejor?
 SV_INCLUDE = include/server.hpp
 SV_SRC = src/server.cpp
-SV_OBJS = bin/server.o
+SV_OBJ = bin/server.o
+SV_DEP = $(SV_INCLUDE) $(SV_SRC) $(HCHY_OBJS)
 
+
+#############################################
+#Client
+CLI_INCLUDE = include/client.hpp
+CLI_SRC = src/client.cpp
+CLI_OBJ = bin/client.o
+CLI_DEP = $(CLI_INCLUDE) $(CLI_SRC) $(HCHY_OBJS)
 
 #############################################
 #Tests
@@ -28,7 +36,7 @@ SV_OBJS = bin/server.o
 SV_TEST = bin/server_test
 SV_TEST_INCLUDE = 
 SV_TEST_SRC = src/server_test.cpp
-SV_TEST_OBJS = $(SV_OBJS) $(HCHY_OBJS) bin/received_info.o
+SV_TEST_OBJS = $(SV_OBJ) $(HCHY_OBJS) bin/received_info.o
 
 #############################################
 #netcp
@@ -44,13 +52,25 @@ MAIN_OBJS = bin/received_info.o $(HCHY_OBJS)
 $(HCHY_BIN_PATH)/netcp: $(MAIN_OBJS) $(HCHY_SRC_PATH)/main.cpp
 	$(CC) $(CFLAGS) $(HCHY_SRC_PATH)/main.cpp $(MAIN_OBJS) -o $(HCHY_BIN_PATH)/netcp	
 
+
+#SERVER
+
 #server test
 $(SV_TEST): $(SV_TEST_INCLUDE) $(SV_TEST_SRC) $(SV_TEST_OBJS) 
 	$(CC) $(CFLAGS) $(SV_TEST_SRC) $(SV_TEST_OBJS) -o $(SV_TEST)
 
-#server
-$(SV_OBJS): $(SV_INCLUDE) $(SV_SRC) $(HCHY_OBJS)
-	$(CC) $(CFLAGS) -c  $(SV_SRC) -o $(SV_OBJS)
+#server.o
+$(SV_OBJ): $(SV_DEP)
+	$(CC) $(CFLAGS) -c  $(SV_SRC) -o $(SV_OBJ)
+
+
+#CLIENT
+
+$(CLI_OBJ): $(CLI_DEP)
+	$(CC) $(CFLAGS) -c $(CLI_SRC) -o $(CLI_OBJ)
+
+
+
 
 
 #received_info

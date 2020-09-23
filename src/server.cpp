@@ -4,6 +4,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <fcntl.h>
+#include <mutex>
 
 server::server(std::string ip, int port) {
   sv_sock_ = new Socket_af_dgram(ip,port);  
@@ -23,7 +24,7 @@ int server::get_port(void) {
 }
 
 int server::upload_file(transf_info new_transf) {
-  int fd = open(new_transf.file_name.c_str(), O_WRONLY);
+  int fd = open(new_transf.file_name.c_str(), O_CREAT, S_IWUSR);
   if (fd < 0) {
     std::cout << "\nError subiendo " << new_transf.file_name << " :(\n";
     return -1;
@@ -32,11 +33,15 @@ int server::upload_file(transf_info new_transf) {
   Socket_af_dgram receiver;
   Message msg;
   msg.port_ = receiver.port();
-  msg.code_ = 3;
+  msg.code_ = 4;
 
   //Indicar al cliente el nuevo puerto y que siga
   //transmitiendo
-  receiver.send_to(msg, new_transf.sender_ip, new_transf.sender_port); 
+  
+  std::mutex sv_sock_mutex;
+  sv_sock_mutex.lock();
+  reinterpret_cast<Socket_af_dgram*>(sv_sock_)->send_to(msg, new_transf.sender_ip, new_transf.sender_port); 
+  sv_sock_mutex.unlock();
 
   received_info rec_;
   

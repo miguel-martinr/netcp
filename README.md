@@ -22,9 +22,19 @@ struct Message {
 0 = Mensaje inicial
 1 = Fragmento intermedio
 2 = Mensaje final
+3 = Solicitud para empezar envío de fichero (cli -> sv)
+4 = Confirmación para empezar envío de fichero (sv -> cli)
 
 
-
+## El cliente
+`class client`
+### Pasos para envío de un fichero
+  1. Abre el fichero y comprueba
+  2. Envía un Message con código 3 y el nombre del fichero al socket principal del server
+  3. Espera n segundos por la respuesta del servidor
+  4. 
+    * Si el servidor confirma el envío entonces empieza a enviar al nuevo puerto indicado por el servidor
+    * Si no lo recibe (o recibe un código de error) lo comunica
 
 
 

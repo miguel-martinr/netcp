@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['message',['Message',['../structMessage.html',1,'']]]
+  ['client',['client',['../classclient.html',1,'']]]
 ];
