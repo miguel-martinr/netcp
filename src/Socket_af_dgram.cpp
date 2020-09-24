@@ -68,7 +68,8 @@ received_info Socket_af_dgram::receive(Message* msg, int stimeout) {
       perror("Error recfrom():"); //provisional
       //Lanzar excepción (?) error recvfrom
     }
-    info.something_received = true; //Se ha recibido un mensaje
+    if (result > 0)
+      info.something_received = true; //Se ha recibido un mensaje
   } else if (result < 0) {
     std::cout << "\nListo\n";
     std::cout << "\nError select()\n"; //Provisional
