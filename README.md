@@ -19,9 +19,12 @@ struct Message {
 }
 ```
 #### codes
+5 = Primer y único mensaje 
+
 0 = Mensaje inicial
 1 = Fragmento intermedio
 2 = Mensaje final
+
 3 = Solicitud para empezar envío de fichero (cli -> sv)
 4 = Confirmación para empezar envío de fichero (sv -> cli)
 

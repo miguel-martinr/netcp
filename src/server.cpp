@@ -25,11 +25,8 @@ int server::get_port(void) {
 }
 
 int server::upload_file(transf_info new_transf) {
-  int fd = open(new_transf.file_name.c_str(), O_CREAT | O_WRONLY | O_RDONLY, S_IWUSR | S_IRUSR | S_IWOTH);
-  if (fd < 0) {
-    std::cout << "\nError subiendo " << new_transf.file_name << " :(\n";
-    return -1;
-  }
+
+
 
   Socket_af_dgram receiver(sv_sock_->ip() );
   Message msg;
@@ -44,22 +41,69 @@ int server::upload_file(transf_info new_transf) {
   reinterpret_cast<Socket_af_dgram*>(sv_sock_)->send_to(msg, new_transf.sender_ip, new_transf.sender_port); 
   sv_sock_mutex.unlock();
 
-  received_info rec_;
+
+
+
+  received_info rec_ = receiver.receive(&msg,1);
+
+  if (!rec_.something_received) {
+    std::cout << "\n " << new_transf.file_name << ": No se ha recibido nada :(\n";
+    return -1;
+  }
+
+
+  int fd;
+  fd = open(new_transf.file_name.c_str(), O_CREAT | O_WRONLY | O_RDONLY, S_IWUSR | S_IRUSR | S_IWOTH);
+  if (fd < 0) {
+    std::cout << "\nError creando " << new_transf.file_name << " :(\n";
+    return -1;
+  }
   
-  do {
-    rec_.something_received = false;
-    rec_ =  receiver.receive(&msg,1);
-    std::cout << "\nMENSAJE RECIBIDO : " << msg.text.data() << std::endl;
-    if (rec_.something_received) {
-      if (write(fd,&msg.text,sizeof(msg.text)) < 0) {
+  //Un único mensaje
+  if (msg.code_ == 5) {   
+    // std::cout << "\nMENSAJE RECIBIDO: " << msg.text.data() << std::endl;
+    if (rec_.ip() == new_transf.sender_ip) 
+      std::cout << "\nSe ha recibido ->";
+      write(STDOUT_FILENO,&msg.text,1023);
+      std::cout << "<- Code:" << msg.code_ << std::endl;
+      if (write(fd,&msg.text,sizeof(msg.text)-1) < 0) {
+        std::cout << "\nFallo en write(): " << new_transf.file_name << std::endl;
+        return -3;
+      }
+  }
+
+
+  //Primero de varios mensajes
+  if (msg.code_ == 0) {
+    if (rec_.ip() == new_transf.sender_ip){ 
+      std::cout << "\nSe ha recibido ->";
+      write(STDOUT_FILENO,&msg.text,1023);
+      std::cout << "<- Code:" << msg.code_ << std::endl;
+      if (write(fd,&msg.text,sizeof(msg.text)-1) < 0) {
+        //std::cout << "\nMENSAJE RECIBIDO: " << msg.text.data() << std::endl;
         std::cout << "\nFallo en write(): " << new_transf.file_name << std::endl;
         rec_.something_received = false;
+      } 
+    } 
+    while (!quit_ && rec_.something_received && msg.code_ != 2) {
+      rec_ = received_info();
+      rec_ =  receiver.receive(&msg,1);
+      if (rec_.something_received) {
+        if (rec_.ip() == new_transf.sender_ip) {
+        std::cout << "\nSe ha recibido ->";
+        write(STDOUT_FILENO,&msg.text,1023);
+        std::cout << "<- Code:" << msg.code_ << std::endl;
+          if (write(fd,&msg.text,sizeof(msg.text)-1) < 0) {
+            //std::cout << "\nMENSAJE RECIBIDO: " << msg.text.data() << std::endl;
+            std::cout << "\nFallo en write(): " << new_transf.file_name << std::endl;
+            return -3;
+          }
+        }
       }
     }
-  } while (!quit_ && rec_.something_received);
-  /**
-   * Hay que arreglar: por qué recibe dos veces el mismo mensaje??
-   */
+  }
+
+  close(fd);
   std::cout << "\n Transferencia de " << new_transf.file_name << " finalizada.\n";
   return 0;
 }
@@ -74,6 +118,7 @@ int server::listen(void) {
     rec = reinterpret_cast<Socket_af_dgram*>(sv_sock_)->receive(&msg,1);
     
     if (rec.something_received) {
+
       if (msg.code_ == 3) { //petición para subir fichero
         //transf.file_name = 
         std::stringstream(std::string(msg.text.data())) >> transf.file_name;
@@ -82,6 +127,7 @@ int server::listen(void) {
         std::cout << "\nIniciando subida de " << transf.file_name << "...\n";
         upload_file(transf);
       }
+
     }
 
     msg = Message();

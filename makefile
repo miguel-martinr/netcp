@@ -70,7 +70,7 @@ $(CLI_OBJ): $(CLI_DEP)
 	$(CC) $(CFLAGS) -c $(CLI_SRC) -o $(CLI_OBJ)
 
 
-bin/test_cli_sv: src/test_cli_sv.cpp $(CLI_OBJ) $(SV_OBJ)
+bin/test_cli_sv: src/test_cli_sv.cpp $(CLI_OBJ) $(SV_OBJ) bin/received_info.o
 	$(CC) $(CFLAGS) src/test_cli_sv.cpp $(CLI_OBJ) $(SV_OBJ) $(HCHY_OBJS) bin/received_info.o -o bin/test_cli_sv
 
 
