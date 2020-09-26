@@ -33,7 +33,7 @@ class server {
      */
     int upload_file(transf_info new_transf);
 
-    int listen(void);
+    int listen(std::string dir = "");
   private:
     /**
      * @note Puede causar problemas el usar un puntero a socket? Cuál es la mejor opción

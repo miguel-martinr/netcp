@@ -33,27 +33,19 @@ int client::get_port(void) {
 
 int client::upload_file(transf_info transf) {
   
-  int fd = open(transf.file_name.c_str(), O_RDONLY); //Abre el fichero
-
-  if (fd < 0) {
-    std::cout << "\nError abriendo " << transf.file_name << std::endl;
-    return -1;
-  }
 
 /**
  * Idea: sería mejor enviar trans_info =
  */
 
   Message msg;
-  msg.code_ = 3;
-  memcpy(&msg.text, transf.file_name.c_str(), transf.file_name.size());
+  msg.code_ = 3; //Solicitar envío
+  memcpy(&msg.text, transf.file_name.c_str(), transf.file_name.size()); //Copio el nombre del fichero
   msg.text[transf.file_name.size()] = '\0';
-
-
+  msg.bytes_read_ = transf.file_name.size();
   reinterpret_cast<Socket_af_dgram*>(cli_sock_)->send_to(msg,transf.sender_ip, transf.sender_port); //Solicita permiso para subir fichero
 
-  msg = Message();
-  received_info rec = reinterpret_cast<Socket_af_dgram*>(cli_sock_)->receive(&msg);//n = 5 segundos Espera la respuesta del servidor
+  received_info rec = reinterpret_cast<Socket_af_dgram*>(cli_sock_)->receive(&msg,20);//n = 20 segundos Espera la respuesta del servidor
 
   if (rec.ip() != transf.sender_ip) { //Si responde otra ip error de seguridad
     std::cout << "\nError de seguridad >:("
@@ -71,30 +63,33 @@ int client::upload_file(transf_info transf) {
     return -3;
   }
 
+  //servidor aceptó el envío
+
+  int fd = open(transf.file_name.c_str(), O_RDONLY); //Abre el fichero
+
+  if (fd < 0) {
+    std::cout << "\nError abriendo " << transf.file_name << std::endl;
+    return -1;
+  }
+
   int newport = msg.port_; //Puerto abierto por el servidor
   
 
-  msg = Message(); //Limpio msg
-
+  //Empieza el envío
   int bytes_read = read(fd,&msg.text,sizeof(msg.text)-1); //Cargo un trozo del fichero en msg
-  
   msg.text[bytes_read] = '\0'; 
 
   if (bytes_read < sizeof(msg.text)-1) 
-    msg.code_ = 5;
+    msg.code_ = 5; //El fichero entero cabe en msg
     else 
-    msg.code_ = 0;
+    msg.code_ = 0; //Se necesitará más de un envío
 
-  char str1[] = "\nEnviando -> ", str2[] = "<- a ";
+  msg.bytes_read_ = bytes_read;
 
-  write(STDOUT_FILENO,&str1,13);
-  write(STDOUT_FILENO,&msg.text,1023);
-  write(STDOUT_FILENO,&str2,5);
-  // std::cout << "\nOFFSET: " << lseek(fd)
+ 
 
-  /**
-   * Arreglar: parece que al enviar el primer mensaje el offset vuelve al principio
-   */
+
+
   
   reinterpret_cast<Socket_af_dgram*>(cli_sock_)->send_to(msg,transf.sender_ip,newport);
 
@@ -104,15 +99,17 @@ int client::upload_file(transf_info transf) {
       msg.code_ = 2;
       else 
       msg.code_ = 1; //Creo que no hacen falta los códigos de todas formas
-
+    msg.bytes_read_ = bytes_read;
     reinterpret_cast<Socket_af_dgram*>(cli_sock_)->send_to(msg,transf.sender_ip,newport);
-    write(STDOUT_FILENO,&str1,13);
-    write(STDOUT_FILENO,&msg.text,1023);
-    write(STDOUT_FILENO,&str2,5);
-    msg = Message();
   }
 
+  if (msg.code_ != 2) {
+    msg.bytes_read_ = 0;
+    msg.code_ = 2;
+    reinterpret_cast<Socket_af_dgram*>(cli_sock_)->send_to(msg,transf.sender_ip,newport);
+  }
 
+  close(fd);
   std::cout << "\nEnvío de " << transf.file_name << " finalizado.\n";
 
   return 0;

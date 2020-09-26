@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     args.push_back(string(argv[i]));
   
   bool server_mode = false;
-  string local_ip, remote_ip, filename;
+  string local_ip, remote_ip, filename, output_dir;
   int local_port = 0, remote_port = 0;
 
   for (int i = 0; i < args.size(); i++) {
@@ -50,6 +50,14 @@ int main(int argc, char* argv[]) {
         return -1;
       }
       filename = args[++i];
+    } else if (args[i] == "-d" || args[i] == "--directory") {
+      if (i == args.size()-1) {
+        cout << "\nIntroduzca un directorio de salida válido >:c\n";
+        return -1;
+      }
+      output_dir = args[++i];
+      if (output_dir[output_dir.size()-1] != '/')
+        output_dir = output_dir + '/';
     } else {
       cout << "\nNo se reconoce : " << args[i] << endl;
       cout << "\nModo de uso:\n"
@@ -74,7 +82,7 @@ int main(int argc, char* argv[]) {
          << "\n\n";
 
     cout << "\nEscuchando...\n";
-    test_sv.listen();   
+    test_sv.listen(output_dir);   
   } else { //client mode 
     client test_cli(local_ip,local_port);
     cout << "\nCliente\n"

@@ -19,7 +19,8 @@ struct Message {
   
   // std::array<char,16> sender_ip; //Idea
   // int sender_port;
-	std::array<char, 1024> text;
+  unsigned int port_;
   int code_;
-  int port_;
+  unsigned int bytes_read_;
+	std::array<char, 1024> text;
 };
