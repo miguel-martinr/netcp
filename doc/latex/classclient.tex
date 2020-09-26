@@ -6,10 +6,29 @@
 \mbox{\Hypertarget{classclient_ad6d60f584e78a52b5fefcb5c4a50bd76}\label{classclient_ad6d60f584e78a52b5fefcb5c4a50bd76}} 
 {\bfseries client} (std\+::string ip=\char`\"{}\char`\"{}, int port=0)
 \item 
-\mbox{\Hypertarget{classclient_ad95e87b6c247313d2ebc2976a3d25117}\label{classclient_ad95e87b6c247313d2ebc2976a3d25117}} 
-int {\bfseries upload\+\_\+file} (\hyperlink{structtransf__info}{transf\+\_\+info} transf)
+\mbox{\Hypertarget{classclient_a368b7cb1a96e6bcf4f96fba54aa431e9}\label{classclient_a368b7cb1a96e6bcf4f96fba54aa431e9}} 
+int {\bfseries upload\+\_\+file} (std\+::string filename, std\+::string remote\+\_\+ip, int remote\+\_\+port)
+\item 
+int \hyperlink{classclient_ad95e87b6c247313d2ebc2976a3d25117}{upload\+\_\+file} (\hyperlink{structtransf__info}{transf\+\_\+info} transf)
+\item 
+\mbox{\Hypertarget{classclient_a050303ea3d6bd349a78e29b525d59ec9}\label{classclient_a050303ea3d6bd349a78e29b525d59ec9}} 
+std\+::string {\bfseries get\+\_\+ip} (void)
+\item 
+\mbox{\Hypertarget{classclient_ad06b72ab9ff49c86ecbc1696364cf491}\label{classclient_ad06b72ab9ff49c86ecbc1696364cf491}} 
+int {\bfseries get\+\_\+port} (void)
 \end{DoxyCompactItemize}
 
+
+\subsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classclient_ad95e87b6c247313d2ebc2976a3d25117}\label{classclient_ad95e87b6c247313d2ebc2976a3d25117}} 
+\index{client@{client}!upload\+\_\+file@{upload\+\_\+file}}
+\index{upload\+\_\+file@{upload\+\_\+file}!client@{client}}
+\subsubsection{\texorpdfstring{upload\+\_\+file()}{upload\_file()}}
+{\footnotesize\ttfamily int client\+::upload\+\_\+file (\begin{DoxyParamCaption}\item[{\hyperlink{structtransf__info}{transf\+\_\+info}}]{transf }\end{DoxyParamCaption})}
+
+Idea\+: sería mejor enviar trans\+\_\+info =
+
+Arreglar\+: parece que al enviar el primer mensaje el offset vuelve al principio
 
 La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
 \item 

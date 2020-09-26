@@ -22,7 +22,11 @@ struct Message \{
 \end{DoxyCode}
  \paragraph*{codes}
 
+5 = Primer y único mensaje
+
 0 = Mensaje inicial 1 = Fragmento intermedio 2 = Mensaje final
+
+3 = Solicitud para empezar envío de fichero (cli -\/$>$ sv) 4 = Confirmación para empezar envío de fichero (sv -\/$>$ cli)
 
 \subsection*{El cliente}
 
@@ -35,7 +39,7 @@ struct Message \{
 \item Espera n segundos por la respuesta del servidor
 \item 
 \begin{DoxyItemize}
-\item Si recibe la respuesta antes de que se cumplan los n segundos entonces empieza a enviar al nuevo puerto indicado por el servidor
+\item Si el servidor confirma el envío entonces empieza a enviar al nuevo puerto indicado por el servidor
 \item Si no lo recibe (o recibe un código de error) lo comunica
 \end{DoxyItemize}
 \end{DoxyEnumerate}

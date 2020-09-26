@@ -71,10 +71,39 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:ad6d60f584e78a52b5fefcb5c4a50bd76"><td class="memItemLeft" align="right" valign="top"><a id="ad6d60f584e78a52b5fefcb5c4a50bd76"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>client</b> (std::string ip=&quot;&quot;, int port=0)</td></tr>
 <tr class="separator:ad6d60f584e78a52b5fefcb5c4a50bd76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad95e87b6c247313d2ebc2976a3d25117"><td class="memItemLeft" align="right" valign="top"><a id="ad95e87b6c247313d2ebc2976a3d25117"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>upload_file</b> (<a class="el" href="structtransf__info.html">transf_info</a> transf)</td></tr>
+<tr class="memitem:a368b7cb1a96e6bcf4f96fba54aa431e9"><td class="memItemLeft" align="right" valign="top"><a id="a368b7cb1a96e6bcf4f96fba54aa431e9"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>upload_file</b> (std::string filename, std::string remote_ip, int remote_port)</td></tr>
+<tr class="separator:a368b7cb1a96e6bcf4f96fba54aa431e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad95e87b6c247313d2ebc2976a3d25117"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classclient.html#ad95e87b6c247313d2ebc2976a3d25117">upload_file</a> (<a class="el" href="structtransf__info.html">transf_info</a> transf)</td></tr>
 <tr class="separator:ad95e87b6c247313d2ebc2976a3d25117"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a050303ea3d6bd349a78e29b525d59ec9"><td class="memItemLeft" align="right" valign="top"><a id="a050303ea3d6bd349a78e29b525d59ec9"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>get_ip</b> (void)</td></tr>
+<tr class="separator:a050303ea3d6bd349a78e29b525d59ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad06b72ab9ff49c86ecbc1696364cf491"><td class="memItemLeft" align="right" valign="top"><a id="ad06b72ab9ff49c86ecbc1696364cf491"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>get_port</b> (void)</td></tr>
+<tr class="separator:ad06b72ab9ff49c86ecbc1696364cf491"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a id="ad95e87b6c247313d2ebc2976a3d25117"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad95e87b6c247313d2ebc2976a3d25117">&#9670;&nbsp;</a></span>upload_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int client::upload_file </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtransf__info.html">transf_info</a>&#160;</td>
+          <td class="paramname"><em>transf</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Idea: sería mejor enviar trans_info =</p>
+<p>Arreglar: parece que al enviar el primer mensaje el offset vuelve al principio</p>
+
+</div>
+</div>
 <hr/>La documentación para esta clase fue generada a partir de los siguientes ficheros:<ul>
 <li>/home/alejandro/Documentos/github_me/netcp/include/<a class="el" href="client_8hpp_source.html">client.hpp</a></li>
 <li>/home/alejandro/Documentos/github_me/netcp/src/client.cpp</li>
