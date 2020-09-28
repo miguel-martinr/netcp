@@ -111,9 +111,10 @@ int main(int argc, char* argv[]) {
     
     cout << "\nEscuchando...\n";
     test_sv.listen(output_dir);   
-  } else { //client mode
-
-
+  } else { 
+    
+    
+    //client mode
     if (local_ip.empty()) {
       int ip_opt = -1;
       vector<string> ifs = get_ifs();
