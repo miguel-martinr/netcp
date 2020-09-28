@@ -45,18 +45,21 @@ struct Message {
 
 
 ### Por hacer 
-* 20/09/2020 21:00 Quiero crear una clase server e introducir en ella las funciones que realiza el programa en el modo server (server_mode = true) (en proceso)
-* Sistema para el envío de ficheros. ¿Como diferencio entre enviar mensajes individuales y ficheros? -> Enviar ficheros fragmentándolos en mensajes -> Requiere establecer una estructura de mensaje que tenga campos con un código que indique si es el primero, intermedio, etc...
 * Excepciones (mirar lo hecho en el repositorio <a href="https://github.com/miguel-martinr/Data-Structure-Classes" target="_blank">DSC</a>
 * ¿Podría transferir el método bind a un nivel superior en la jerarquía de Socket? -> ¿Cuál es la diferencia al bindear cada tipo de socket?
-* Tengo que idear un mecanismo de comunicación entre cliente y servidor -> El cliente solicita subir un fichero, el servidor verifica que se pueda subir (o lo pone en una cola hasta que se pueda?) y si es así abre un hilo para recibir el fichero y un socket en ese puerto para recibirlo, le comunica el puerto al cliente para que este empieze a transmitir 
+* Tengo que idear un mecanismo de comunicación entre cliente y servidor -> El cliente solicita subir un fichero, el servidor verifica que se pueda subir (o lo pone en una cola hasta que se pueda?) y si es así abre un hilo para recibir el fichero y un socket en ese puerto para recibirlo, le comunica el puerto al cliente para que este empieze a transmitir
+* Como termino adecuadamente el programa? -> Terminar hilos | Donde hago el join() ? Es siquiera necesario?
 * Cuando el cliente envía a un puerto donde no hay un servidor escuchando aparece el mensaje error de seguridad (ip) en vez de no hay respuesta del servidor -> Revisar
+
+
 
 ### Hecho
 * 20/09/2020 21:11 Voy a reorganizar todo el proyecto
   * Eliminar Socket.h hecho (20/09/2020 22:55)
   * Sacar ficheros de include/hierarchy y src/hierarchy y eliminar esos directorios (hecho 20/09/2020 22:55)
   * Corregir makefile para que funcione con la nueva organización (hecho 20/09/2020 22:55)
+* 20/09/2020 21:00 Quiero crear una clase server e introducir en ella las funciones que realiza el programa en el modo server (server_mode = true) (en proceso) LISTO
+* Sistema para el envío de ficheros. ¿Como diferencio entre enviar mensajes individuales y ficheros? -> Enviar ficheros fragmentándolos en mensajes -> Requiere establecer una estructura de mensaje que tenga campos con un código que indique si es el primero, intermedio, etc...  LISTO
 
 ## Jerarquía de clases Socket
 > Esto puede considerarse un **subproyecto** de `netcp` y planeo extraerlo, junto a su documentación, a un repositorio propio :)<br/><br/>

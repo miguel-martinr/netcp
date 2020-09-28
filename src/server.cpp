@@ -123,7 +123,7 @@ int server::listen(std::string dir) {
         transf.sender_ip = rec.ip();
         transf.sender_port = rec.port();
         std::cout << "\nIniciando subida de " << transf.file_name << "...\n";
-        upload_file(transf);
+        threads_.push_back(new std::thread(&server::upload_file, this, transf));
       }
 
     }

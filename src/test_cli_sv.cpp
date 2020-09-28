@@ -4,8 +4,34 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sys/types.h>
+#include <ifaddrs.h>
+#include <vector>
+#include <netdb.h>
 
 using namespace std;
+
+
+vector<string> get_ifs(void) {
+  vector<string> ifs;
+  char host[1025];
+ 
+
+  ifaddrs *ifap;
+  ifaddrs *item;
+  getifaddrs(&ifap);
+  
+  for (item = ifap; item != NULL; item = item->ifa_next) {
+    if (item->ifa_addr->sa_family == AF_INET) {
+      getnameinfo(item->ifa_addr, sizeof(sockaddr_in), host, 1025, NULL,0,1);
+      ifs.push_back(string(host));
+    }
+  }
+
+  return ifs;
+}
+
+
 
 int main(int argc, char* argv[]) {
 
@@ -74,16 +100,34 @@ int main(int argc, char* argv[]) {
 
   }
 
-  if (server_mode) { //m¡server mode
+  if (server_mode) { //server mode
     server test_sv(local_ip, local_port);
     cout << "\nServidor\n"
          << "\n ip:   " << test_sv.get_ip()
          << "\n port: " << test_sv.get_port()
          << "\n\n";
 
+ 
+    
     cout << "\nEscuchando...\n";
     test_sv.listen(output_dir);   
-  } else { //client mode 
+  } else { //client mode
+
+
+    if (local_ip.empty()) {
+      int ip_opt = -1;
+      vector<string> ifs = get_ifs();
+      for (int i = 0; i < ifs.size(); i++) 
+        cout << endl << ' ' << i << ". <" << ifs[i] << "> "; 
+      
+      do {
+        cout << "\nSeleccione una ip > "; 
+        cin >> ip_opt;
+      } while (ip_opt < 0 || ip_opt >= ifs.size());
+      local_ip = ifs[ip_opt];
+    }
+
+
     client test_cli(local_ip,local_port);
     cout << "\nCliente\n"
          << "\n " << test_cli.get_ip() << ':' << test_cli.get_port() 
