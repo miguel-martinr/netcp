@@ -104,11 +104,14 @@ int server::upload_file(transf_info new_transf) {
 
 int server::listen(std::string dir) {
   
+  threads_.push_back(new std::thread(&server::cmd_handler, this));
+
   Message msg;
   received_info rec;
   transf_info transf;
 
   while(!quit_) {
+    // std::cout << "\nQUIT LISTEN = " << (quit_ ? "TRUE" : "FALSE") << "\n\n";
     rec = reinterpret_cast<Socket_af_dgram*>(sv_sock_)->receive(&msg,1);
     
     if (rec.something_received) {
@@ -130,4 +133,35 @@ int server::listen(std::string dir) {
   }
 
   return 0;
+}
+
+
+int server::cmd_handler(void) {
+
+  std::string cmd,arg;
+  while (!quit_) {
+    std::getline(std::cin,cmd);
+    std::stringstream cmd_stream(cmd);
+    cmd_stream >> cmd;
+
+    if (cmd == "quit") {
+      quit();
+      // std::cout << "\nQUIT = " << (quit_ ? "TRUE" : "FALSE") << "\n\n";
+    } else if (!cmd.empty()){
+      std::cout << "\nComando no válido\n";
+    }
+
+  }
+
+  return 0;
+
+
+  return 0;
+}
+
+int server::quit(void) {
+  std::mutex quit_mutex;
+  quit_mutex.lock();
+  quit_ = true;
+  quit_mutex.unlock();
 }

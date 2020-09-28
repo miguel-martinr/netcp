@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['netcp',['Netcp',['../index.html',1,'']]]
+  ['message',['Message',['../structMessage.html',1,'']]]
 ];

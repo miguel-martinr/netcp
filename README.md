@@ -50,6 +50,7 @@ struct Message {
 * Excepciones (mirar lo hecho en el repositorio <a href="https://github.com/miguel-martinr/Data-Structure-Classes" target="_blank">DSC</a>
 * ¿Podría transferir el método bind a un nivel superior en la jerarquía de Socket? -> ¿Cuál es la diferencia al bindear cada tipo de socket?
 * Tengo que idear un mecanismo de comunicación entre cliente y servidor -> El cliente solicita subir un fichero, el servidor verifica que se pueda subir (o lo pone en una cola hasta que se pueda?) y si es así abre un hilo para recibir el fichero y un socket en ese puerto para recibirlo, le comunica el puerto al cliente para que este empieze a transmitir 
+* Cuando el cliente envía a un puerto donde no hay un servidor escuchando aparece el mensaje error de seguridad (ip) en vez de no hay respuesta del servidor -> Revisar
 
 ### Hecho
 * 20/09/2020 21:11 Voy a reorganizar todo el proyecto

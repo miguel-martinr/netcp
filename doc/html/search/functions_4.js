@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['port',['port',['../structreceived__info.html#a477d71d73917e058813ccf4ebb5f0269',1,'received_info::port()'],['../classSocket__base.html#afcdd7ae81a9fb867d012b7db8c259576',1,'Socket_base::port()']]]
+  ['initialize',['initialize',['../classSocket__base.html#af0b9f713f4d6231c287198034fad662e',1,'Socket_base']]],
+  ['ip',['ip',['../structreceived__info.html#a0ec80b4a2270fb3df1485a339c9dbbc7',1,'received_info::ip()'],['../classSocket__base.html#aed490170422026c6dfe5def12031cd04',1,'Socket_base::ip()']]]
 ];

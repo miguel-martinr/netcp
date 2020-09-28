@@ -33,14 +33,33 @@ class server {
      */
     int upload_file(transf_info new_transf);
 
+
+    /**
+     * @brief El servidor empieza a escuchar
+     * @param dir ruta en la que guardar los ficheros recibidos
+     */
     int listen(std::string dir = "");
+
+
+
+    /**
+     * @brief Maneja la línea de comandos
+     */
+    int cmd_handler(void);
+
+    /**
+     * @brief "Apaga" el servidor, matando a los hilos. ToDo: opciones --force?
+     */
+    int quit(void);
+
+    
   private:
     /**
      * @note Puede causar problemas el usar un puntero a socket? Cuál es la mejor opción
      * y porqué
      */
     Socket_base* sv_sock_;
-    std::vector<std::thread> threads_;
+    std::vector<std::thread*> threads_;
     bool quit_;
 
     

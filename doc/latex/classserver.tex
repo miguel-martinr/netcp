@@ -22,9 +22,14 @@ int \hyperlink{classserver_a85c34ce8e949d74f068025b11bd04bcc}{get\+\_\+port} (vo
 \mbox{\Hypertarget{classserver_ad7ef99cd7b0f7c529e501f34bd5d7f03}\label{classserver_ad7ef99cd7b0f7c529e501f34bd5d7f03}} 
 int \hyperlink{classserver_ad7ef99cd7b0f7c529e501f34bd5d7f03}{upload\+\_\+file} (\hyperlink{structtransf__info}{transf\+\_\+info} new\+\_\+transf)
 \begin{DoxyCompactList}\small\item\em Sube un fichero al servidor (gestiona comunicación con el cliente) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classserver_a6104feb19c6f7f11938eb6d7ed28e5e6}\label{classserver_a6104feb19c6f7f11938eb6d7ed28e5e6}} 
-int {\bfseries listen} (void)
-\end{DoxyCompactItemize}
+int \hyperlink{classserver_a6e675f47d2b9eeeba5d8d8775f4ecb22}{listen} (std\+::string dir=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em El servidor empieza a escuchar. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classserver_af59b03ba12547e371c7f7684d90c46cb}\label{classserver_af59b03ba12547e371c7f7684d90c46cb}} 
+int \hyperlink{classserver_af59b03ba12547e371c7f7684d90c46cb}{cmd\+\_\+handler} (void)
+\begin{DoxyCompactList}\small\item\em Maneja la línea de comandos. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classserver_a38eb76635aa1e33bd98d4c86a0193dc7}\label{classserver_a38eb76635aa1e33bd98d4c86a0193dc7}} 
+int \hyperlink{classserver_a38eb76635aa1e33bd98d4c86a0193dc7}{quit} (void)
+\begin{DoxyCompactList}\small\item\em \char`\"{}\+Apaga\char`\"{} el servidor, matando a los hilos. To\+Do\+: opciones --force? \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Descripción detallada}
@@ -49,6 +54,21 @@ std\+::string ip a la que está bindeado el socket principal del server
 \begin{DoxyReturn}{Devuelve}
 int al que está bindeado el socket principal del server 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classserver_a6e675f47d2b9eeeba5d8d8775f4ecb22}\label{classserver_a6e675f47d2b9eeeba5d8d8775f4ecb22}} 
+\index{server@{server}!listen@{listen}}
+\index{listen@{listen}!server@{server}}
+\subsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily int server\+::listen (\begin{DoxyParamCaption}\item[{std\+::string}]{dir = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+El servidor empieza a escuchar. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em dir} & ruta en la que guardar los ficheros recibidos \\
+\hline
+\end{DoxyParams}
 
 
 La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
